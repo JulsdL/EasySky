@@ -1,0 +1,2 @@
+class CelestialBody < ApplicationRecord
+end
