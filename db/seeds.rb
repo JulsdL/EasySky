@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# Create a seed for celestial_bodies from the JSON file catalogue-de-messier.json
-
 require "json"
 require "open-uri"
 
@@ -15,20 +13,26 @@ require "open-uri"
 puts "Cleaning database..."
 CelestialBody.destroy_all
 
-file = File.read("db/catalogue-de-messier.json")
-data = JSON.parse(file)
+# Create a seed for 30 celestial bodies from the JSON file catalogue-de-messier.json
+
+file = File.read('db/catalogue-de-messier.json')
+data = JSON.parse(file).take(10)
+count = 0
 
 data.each do |celestial_body|
   messier = CelestialBody.create(
-    name: celestial_body["messier"],
-    description: celestial_body["french_name_nom_français"],
-    ra: celestial_body["ra"],
-    dec: celestial_body["dec"]
+    name: celestial_body['messier'],
+    description: "Type: #{celestial_body['objet']} - Constellation: #{celestial_body['french_name_nom_francais']} - #{celestial_body['ngc']} - Distance: #{celestial_body['distance']}années lumières",
+    ra: celestial_body['ra'],
+    dec: celestial_body['dec']
   )
   # Attach a photo to the celestial body from the url provided in the JSON file
-  file = URI.open(celestial_body["image"])
-  messier.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  messier.save
+  file = URI.open(celestial_body['image'])
+  messier.photo.attach(io: file, filename: messier.name, content_type: 'image/jpg')
+  messier.save!
+  count += 1
 
-  puts "Created #{messier.name}"
+  puts "#{count}: Created #{messier.name}"
 end
+
+puts "Finished!"
