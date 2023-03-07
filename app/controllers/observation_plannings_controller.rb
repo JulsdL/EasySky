@@ -1,0 +1,2 @@
+class ObservationPlanningsController < ApplicationController
+end
