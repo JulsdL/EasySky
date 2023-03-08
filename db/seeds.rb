@@ -13,7 +13,7 @@ require "open-uri"
 puts "Cleaning database..."
 CelestialBody.destroy_all
 
-# Create a seed for 30 celestial bodies from the JSON file catalogue-de-messier.json
+# Create a seed for 10 celestial bodies from the JSON file catalogue-de-messier.json
 
 file = File.read('db/catalogue-de-messier.json')
 data = JSON.parse(file).take(10)
