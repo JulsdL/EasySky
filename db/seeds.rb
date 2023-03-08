@@ -36,7 +36,7 @@ data.each do |celestial_body|
     ra: celestial_body['ra'],
     dec: celestial_body['dec']
   )
-# Browse all images in the folder db/images and attach them to the celestial body if the name of the image is the same as the name of the celestial body.
+  # Browse all images in the folder db/images and attach them to the celestial body if the name of the image is the same as the name of the celestial body.
   Dir.glob("db/images/*").each do |image|
     if image.include?(messier.name)
       file = URI.open(image)
@@ -49,7 +49,7 @@ data.each do |celestial_body|
   puts "#{count}: Created #{messier.name}"
 end
 
-puts "Finished!"
+puts "Finished creating celestials objects"
 
 # Creating 5 users
 count = 0
@@ -251,3 +251,5 @@ count += 1
 puts "#{count}: Created #{planning.name}"
 
 puts "Finished creating observation"
+
+puts "Finished !"
