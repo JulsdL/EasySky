@@ -15,7 +15,7 @@
         <div class="card-body">
           <h5 class="card-title"><strong><%= celestial_body.name %></strong></h5>
           <p class="card-text">Description: <%= celestial_body.description %></p>
-          <a href="#" class="btn btn-primary">En savoir plus</a>
+          <%= link_to "En savoir plus","#", class:"btn btn-primary" %>
         </div>
       </div>
       <br>
@@ -24,6 +24,6 @@
       nous vous proposons des soirées astronomiques sur mesure.</p>
     Réservez votre télescope et découvrez le ciel depuis chez vous!
     <br>
-    <a href="#" class="btn btn-primary">Réservez</a>
+    <%= link_to "Réservez", "#", class:"btn btn-primary"%>
   </div>
 </div>
