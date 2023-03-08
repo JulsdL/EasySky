@@ -10,4 +10,12 @@ class Booking < ApplicationRecord
   belongs_to :user
   has_many :booking_items
   has_many :items, through: :booking_items
+
+  before_validation :calculate_price
+
+  private
+
+  def calculate_price
+    self.price = items.sum(&:price)
+  end
 end
