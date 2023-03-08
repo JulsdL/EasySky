@@ -1,0 +1,29 @@
+<%# display 8 random celestial bodies from the database, with name, image, description%>
+<div class="container">
+  <h2>Découvertes</h2>
+  <p> Observez les astres qui vous entourent et découvrez les secrets de l'univers
+    depuis chez vous. Galaxies, nébuleuses, planètes, nos télescopes vous permettent
+    d'observer le ciel en couleur, même depuis la ville.
+    Aucune connaissance préalable requise! Le télescope s'occupe de tout
+  </p>
+  <div>
+    <% @celestial_bodies.shuffle.take(8).each do |celestial_body| %>
+      <div class="celestial_body_card" style="width: 30rem;">
+        <div class="card-img-top">
+          <p><%= cl_image_tag celestial_body.photo.key, height: 300, width: 400, crop: :fill %></p>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><strong><%= celestial_body.name %></strong></h5>
+          <p class="card-text">Description: <%= celestial_body.description %></p>
+          <%= link_to "En savoir plus","#", class:"btn btn-primary" %>
+        </div>
+      </div>
+      <br>
+    <% end %>
+    <p> Vous souhaitez organiser une soirée mémorable? Entre amis, en famille ou en amoureux,
+      nous vous proposons des soirées astronomiques sur mesure.</p>
+    Réservez votre télescope et découvrez le ciel depuis chez vous!
+    <br>
+    <%= link_to "Réservez", "#", class:"btn btn-primary"%>
+  </div>
+</div>
