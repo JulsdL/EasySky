@@ -1,1 +1,59 @@
 // Specific CSS for your home-page
+// * {
+//   border: 1px red solid;
+// }
+
+h1 {
+  font-size: 4rem;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.home-header {
+
+  height: 720px;
+  padding: 20px;
+  color: white;
+  background-image: asset-url('earthbg.jpg'), linear-gradient(#000000, #092536);
+  background-blend-mode: revert;
+  background-size: cover;
+  background-position: center center;
+}
+
+.home-header-title {
+  margin-top: 30px;
+}
+
+.home-header-image {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  // object-fit: contain;
+}
+
+.home-info {
+  background: linear-gradient( #092536, #8FC0ED, #092536);
+  height: auto;
+  margin: 0;
+}
+
+.home-info-section {
+  padding: 30px;
+}
+
+.home-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: auto;
+  height: 400px;
+  color: white;
+  background: linear-gradient( #092536, #000000);
+}
+
+.text-shadow {
+  text-shadow: 3px 4px 3px #02598B;
+}

@@ -1,2 +1,69 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-header">
+  <div class="home-header-title">
+    <h1 class="text-shadow" style="text-align: center">EASYSKY</h1>
+    <h3 style="text-align: center">Explore the Universe</h3>
+  </div>
+  <div class="home-header-image">
+    <%= image_tag "Moon.png", alt: "Moon", style: 'max-width: 100vh; height: auto' %>
+  </div>
+  <div class="row justify-content-center" style="text-align: center">
+    <%= link_to "Découvrir", objects_path, class:"col-4 btn-straight" %>
+    <button type="button" class="col-4 btn-straight">Réserver</button>
+  </div>
+</div>
+<div class="home-info">
+<<<<<<< HEAD
+
+  <div class="row home-info-section">
+    <div class=".col-md-8 .offset-md-2">
+      <h2 class="text-shadow" style="color: white" >Technology</h2>
+        <div class="row justify-content-center m-4">
+        <%= image_tag "telescope.png", alt: "telescope", style: 'max-width:60%'%>
+        </div>
+=======
+  <div class="home-info-section">
+    <div class="container">
+      <h2 class="text-shadow" style="color: white" >Technology</h2>
+      <div class="row justify-content-center m-4">
+        <%= image_tag "telescope.png", alt: "telescope", style: 'width:80%'%>
+      </div>
+>>>>>>> master
+      <p style="color: white">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla</p>
+    </div>
+  </div>
+  <div class="home-info-section">
+    <div class="container">
+      <h2 class="text-shadow" style="color: white" >Explorer</h2>
+      <div class="row justify-content-center m-4">
+        <%= image_tag "planet.png", alt: "Planet", style: 'max-width:60%' %>
+      </div>
+      <p style="color: white">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla</p>
+    </div>
+  </div>
+  <div class="home-info-section">
+    <div class="container">
+      <h2 class="text-shadow" style="color: white" >Reserver</h2>
+      <div class="row justify-content-center m-4">
+<<<<<<< HEAD
+        <%= image_tag "telescope.png", alt: "telescope", style: 'max-width:60%'%>
+        </div>
+=======
+        <%= image_tag "telescope.png", alt: "telescope", style: 'width:80%'%>
+      </div>
+>>>>>>> master
+      <p style="color: white">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla</p>
+    </div>
+  </div>
+  <div class="home-info-section">
+    <div class="container">
+      <h2 class="text-shadow" style="color: white" >Partager</h2>
+      <div class="row justify-content-center m-4">
+        <%= image_tag "family.png", alt: "family", style: 'max-width:60%' %>
+      </div>
+      <p style="color: white">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla</p>
+    </div>
+  </div>
+</div>
+<div class="home-footer" style="text-align: center">
+  <button type="button" class="col-4 btn-straight">Contactez-Nous!</button>
+</div>
