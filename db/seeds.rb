@@ -19,22 +19,30 @@ CelestialBody.destroy_all
 User.destroy_all
 
 
-# Create a seed for 10 celestial bodies from the JSON file catalogue-de-messier.json
+# Create a seed to create selected number of celestial bodies from the JSON file catalogue-de-messier.json
+puts "How many celestial bodies do you want to create (max 110)?"
+print "> "
+number = gets.chomp.to_i
 
+puts "Creating #{number} celestial bodies..."
 file = File.read('db/catalogue-de-messier.json')
-data = JSON.parse(file).take(10)
+data = JSON.parse(file).shuffle.take(number)
 count = 0
 
 data.each do |celestial_body|
   messier = CelestialBody.create(
     name: celestial_body['messier'],
-    description: "Type: #{celestial_body['objet']} - Constellation: #{celestial_body['french_name_nom_francais']} - #{celestial_body['ngc']} - Distance: #{celestial_body['distance']}années lumières",
+    description: "Type: #{celestial_body['objet']} - Constellation: #{celestial_body['french_name_nom_francais']} - #{celestial_body['ngc']} - Distance: #{celestial_body['distance']} années lumières",
     ra: celestial_body['ra'],
     dec: celestial_body['dec']
   )
-  # Attach a photo to the celestial body from the url provided in the JSON file
-  file = URI.open(celestial_body['image'])
-  messier.photo.attach(io: file, filename: messier.name, content_type: 'image/jpg')
+# Browse all images in the folder db/images and attach them to the celestial body if the name of the image is the same as the name of the celestial body.
+  Dir.glob("db/images/*").each do |image|
+    if image.include?(messier.name)
+      file = URI.open(image)
+      messier.photo.attach(io: file, filename: messier.name, content_type: 'image/jpg')
+    end
+  end
   messier.save!
   count += 1
 
