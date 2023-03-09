@@ -1,0 +1,25 @@
+<div class="container">
+  <div classe="titre">
+    <h2> <%= "#{@observation_planning.name} pour #{@observation_planning.user.first_name}" %></h2>
+    <h3><%= "De #{@observation_planning.start_time} à #{@observation_planning.end_time}" %></h3>
+  </div>
+  <div class="sunmoon">
+    <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
+    <%= image_tag "moonphasels.png", width: '150', height: '100', crop: :fill %>
+    <%= image_tag "sunriseset.png", width: '150', height: '100', crop: :fill%>
+  </div>
+  <h3> Proposition d'objets célestes à observer</h3>
+  <div class="container mt-3">
+    <%# Display all the celestial bodies of the observation planning%>
+    <% heure_observation = @observation_planning.start_time %>
+    <% @observation_planning.celestial_bodies.each do |celestial_body| %>
+      <div class="observation_plan_card">
+        <%= "#{celestial_body.name}" %>
+        <%= cl_image_tag celestial_body.photo.key, width: '100', height: '67', crop: :fill %>
+        <p>Heure conseillée d'observation: <%= "#{heure_observation + 15.minutes}" %></p>
+        <p>Elévation: 35°</p>
+        <p>Orientation: SSE</p>
+        <p>Pointer le télescope vers <%= "#{celestial_body.name}" %></p>
+        <% heure_observation += 15.minutes %>
+      </div>
+    <% end %>

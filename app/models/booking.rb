@@ -16,7 +16,7 @@ class Booking < ApplicationRecord
 
   # create a new observation planning for each new booking
   def generate_observation_planning
-    planning = ObservationPlanning.create(booking_id: id)
+    planning = ObservationPlanning.new
     # add 8 random celestial bodies to the observation planning
     8.times do
       planning.celestial_bodies << CelestialBody.all.sample
@@ -26,7 +26,7 @@ class Booking < ApplicationRecord
     # the booking date is the observation planning date and start time is 20:00 and end time is 22:00
     planning.start_time = date + 20.hours
     planning.end_time = date + 22.hours
-    planning.name = "Observations du #{date}"
+    planning.name = "Plan d'observation du #{date}"
     planning.save
   end
 
