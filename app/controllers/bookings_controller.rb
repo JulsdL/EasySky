@@ -12,12 +12,16 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.status = :pending
+    @booking.status = :attente
     if @booking.save
-      redirect_to root_path
+      redirect_to checkout_booking_path(@booking)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def checkout
+    @booking = Booking.find(params[:id])
   end
 
   private

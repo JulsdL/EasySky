@@ -1,15 +1,13 @@
 .btn-straight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 150px;
   height: 50px;
   background-color: $dark-orange;
   color: white;
   font-size: 1rem;
   border: none;
-  margin: 10px;
-}
-
-.btn-curve {
-
-
-
+  margin: auto;
+  text-decoration: none;
 }

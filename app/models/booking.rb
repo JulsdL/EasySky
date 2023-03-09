@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :date, presence: true
   validates :status, presence: true
-  enum status: { pending: 0, confirmed: 1, canceled: 2 }
+  enum status: { attente: 0, confirmé: 1, annulé: 2 }
 
   belongs_to :user
   has_many :booking_items
