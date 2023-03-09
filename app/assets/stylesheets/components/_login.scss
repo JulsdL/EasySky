@@ -1,0 +1,19 @@
+.login-container {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 200px;
+  padding: 30px;
+  a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none !important;
+    color: white !important;
+    margin-top: 20px;
+  }
+}
+input.form-control {
+  background: transparent !important;
+  border-radius: 5px;
+}
