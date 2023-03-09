@@ -9,10 +9,10 @@
 require "json"
 require "open-uri"
 require "faker"
-require "rails"
 
 # Clean the database
 puts "Cleaning database..."
+Target.destroy_all
 ObservationPlanning.destroy_all
 BookingItem.destroy_all
 Booking.destroy_all
