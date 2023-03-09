@@ -1,0 +1,14 @@
+<%# Display all the observation plannings %>
+<div class="container">
+  <h2>Vos plannings d'observation</h2>
+  <div class="observation_plannings">
+    <% @observation_plannings.each do |observation_planning| %>
+      <p>
+        <%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %>
+        <%= "De #{observation_planning.start_time} à #{observation_planning.end_time}" %>
+      </p>
+      <%# Display the link to show the observation planning details %>
+      <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "col-4 btn-straight" %>
+    <% end %>
+  </div>
+</div>
