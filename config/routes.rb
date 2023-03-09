@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     end
   end
   get "/objects", to: "celestial_bodies#index", as: :objects
+
+  resources :observation_plannings, only: %i[index show]
 end
