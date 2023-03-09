@@ -9,10 +9,14 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.status = :pending
     if @booking.save
-      redirect_to root_path
+      redirect_to checkout_booking_path(@booking)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def checkout
+    @booking = Booking.find(params[:id])
   end
 
   private
