@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="container">
+    <h2>Confirmer la réservation</h2>
+    <p>Vérifiez les informations de réservation avant de procéder au paiement</p>
+  </div>
+  <div class="container">
+    <div class="container">
+      <p>Nom de facturation</p>
+      <p><%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
+    </div>
+    <div class="container">
+      <p>Adresse de facturation</p>
+      <p> <%= "#{current_user.street} #{current_user.zip} #{current_user.city}"  %></p>
+    </div>
+    <div class="container">
+      <p>Mail de facturation</p>
+      <p> <%= current_user.email %></p>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Détails de la réservation</h2>
+    <% @booking.items.each do |item|%>
+      <%= render "booking_options", item: %>
+    <% end %>
+  </div>
+  <div class="container">
+    <p>Total <%= @booking.price %> CHF</p>
+  </div>
+  <div class="container">
+    <%= link_to "Procéder au paiement", "#" %>
+  </div>
+</div>
