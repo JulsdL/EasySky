@@ -1,0 +1,8 @@
+<%# Display the observation planning %>
+<h2>Vos plannings d'observation</h2>
+<% @observation_plannings.each do |observation_planning| %>
+  <p>
+    <%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %>
+    <%= "De #{observation_planning.start_date} à #{observation_planning.end_date}" %>
+  </p>
+<% end %>

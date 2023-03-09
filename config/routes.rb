@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     end
   end
   get "/objects", to: "celestial_bodies#index", as: :objects
+  get "objects/planning", to: "observation_plannings#index"
 end
