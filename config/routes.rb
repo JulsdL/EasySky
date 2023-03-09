@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get "/mes-réservations", to: "bookings#index", as: :mes_reservations
+  get "users/dashboard", to: "pages#dashboard"
   resources :bookings, only: %i[new create show] do
     member do
       get :checkout
