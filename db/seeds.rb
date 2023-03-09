@@ -9,12 +9,14 @@
 require "json"
 require "open-uri"
 require "faker"
+require "rails"
 
 # Clean the database
 puts "Cleaning database..."
-Item.destroy_all
 ObservationPlanning.destroy_all
+BookingItem.destroy_all
 Booking.destroy_all
+Item.destroy_all
 CelestialBody.destroy_all
 User.destroy_all
 
@@ -163,45 +165,50 @@ booking = Booking.new(
   price: rand(150 || 300),
   status: Booking.statuses.keys.sample
 )
+booking.items.append(Item.first)
 booking.save!
 count += 1
 puts "#{count}: Created booking"
 
 booking = Booking.new(
   user_id:  User.last.id,
-  date: Faker::Date.in_date_period,
+  date: Date.new(2023, 03, 07),
   street: User.last.street,
   zip: User.last.zip,
   city: User.last.city,
   price: 150,
   status: Booking.statuses.keys.sample
 )
+booking.items.append(Item.first)
 booking.save!
 count += 1
 puts "#{count}: Created booking"
 
 booking = Booking.new(
   user_id: User.all.second.id,
-  date: Faker::Date.in_date_period,
+  date: Date.new(2023, 04, 10),
   street: User.all.second.street,
   zip: User.all.second.zip,
   city: User.all.second.city,
   price: 300,
   status: Booking.statuses.keys.sample
 )
+booking.items.append(Item.first)
 booking.save!
 count += 1
 puts "#{count}: Created booking"
 
 booking = Booking.new(
   user_id:  User.all.second.id,
-  date: Faker::Date.in_date_period,
+  date: Date.new(2023, 03, 23),
   street: User.all.second.street,
   zip: User.all.second.zip,
   city: User.all.second.city,
   price: 150,
   status: Booking.statuses.keys.sample
 )
+booking.items.append(Item.first)
+booking.items.append(Item.all.second)
 booking.save!
 count += 1
 puts "#{count}: Created booking"
