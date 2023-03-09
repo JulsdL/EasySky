@@ -1,0 +1,31 @@
+<h1> Mes Réservations </h1>
+
+<div class="row justify-content-center">
+  <% @bookings.each do |booking| %>
+    <%# display only the bookings for the current user if there is any bookings%>
+    <% if booking.user_id == current_user.id %>
+      <div class="row card-booking">
+        <div class= "card-booking-info">
+          <div class="row">
+            <div class="col-10">
+              <h6>Date: <%= booking.date.strftime("%d.%m.%y") %></h6>
+            </div>
+            <div class="col-2 card-booking-status">
+              <%= booking.status %>
+            </div>
+          </div>
+          <p>Adresse de livraison: <%="#{booking.street} - #{booking.zip} #{booking.city}"%></p>
+          <p>Vos options:
+          <% booking.items.each do |item|%>
+            <%= item.name%>
+            <%= item.price%>
+          <% end %>
+          <p>Prix total: CHF <%= booking.price%>.-</p>
+        </div>
+        <%# <% if booking.status == "pending" %>
+        <%#<%= link_to "Cancel booking", booking_path(booking), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+        <%# <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

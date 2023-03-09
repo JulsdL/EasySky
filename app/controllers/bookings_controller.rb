@@ -1,5 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_items, only: %i[new create]
+
+  def index
+    @bookings = Booking.where(user: current_user)
+  end
+
   def new
     @booking = Booking.new
   end
