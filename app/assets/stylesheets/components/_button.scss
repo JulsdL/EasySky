@@ -2,8 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  width: fit-content;
   height: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
   background-color: $dark-orange;
   color: white;
   font-size: 1rem;
