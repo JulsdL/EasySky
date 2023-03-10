@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/mes-réservations", to: "bookings#index", as: :mes_reservations
   get "/bookings/:id/checkout/paiement", to: "bookings#paiement", as: :paiement
   get "users/dashboard", to: "pages#dashboard"
+  get "users/informations", to: "pages#informations"
   resources :bookings, only: %i[new create show] do
     member do
       get :checkout

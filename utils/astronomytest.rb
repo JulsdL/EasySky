@@ -6,8 +6,6 @@ require 'astronomy'
 # info = Astronomy::Information.new
 # info.search 'moon'
 
-
-
 def visible?(latitude, longitude, body, time)
   # Convertir les coordonnées GPS en radians
   lat = latitude * Math::PI / 180
