@@ -3,8 +3,8 @@
     <p class="text-shadow" style="font-size: 2rem"> <%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
   </div>
   <div class="col-sm-6 offset-sm-3 text-center">
-      <div class="row">
-      <p>Mes informations</p>
+    <div class="row">
+      <%= link_to "Mes informations", users_informations_path %>
     </div>
     <div class="row mb-4">
       <%= link_to "Mes réservations", mes_reservations_path, style:'color: white' %>
