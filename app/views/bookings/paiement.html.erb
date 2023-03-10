@@ -1,34 +1,32 @@
-<div class= "container">
-  <h2> Paiement </h2>
-  <div class="row">
-    <div class= "col-md-5 ml-md-auto my-3 ml-5">
+<div class= "container align-self-center">
+  <div class="m-3">
+    <h2> Paiement </h2>
+  </div>
+  <div class= "col-md-5 mx-auto">
+    <div class="card-paiement col-md-12">
       <%= image_tag("cartedepaiement.jpg", class: "card-image") %>
-    </div>
-    <div class= "col-md-5 ml-md-auto">
-      <div class="card-paiement col-md-12">
-        <form>
-          <div class="form-group">
-            <label for="">Numéro de la carte</label>
-            <input type="" class="form-control" placeholder="Veuillez entrer le numéro de la carte">
-            <small class="form-text text-muted">Vos données restent confidentielles.</small>
+      <form>
+        <div class="form-group">
+          <label for="">Numéro de la carte</label>
+          <input type="" class="form-control" placeholder="Veuillez entrer le numéro de la carte">
+          <small class="form-text text-muted">Vos données restent confidentielles.</small>
+        </div>
+        <div class="form-group">
+          <label for="">Titulaire de la carte</label>
+          <input type="" class="form-control" placeholder="Titulaire de la carte">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Date d'expiration</label>
+            <input type="date" class="form-control" placeholder="Date d'expiration">
           </div>
-          <div class="form-group">
-            <label for="">Titulaire de la carte</label>
-            <input type="" class="form-control" placeholder="Titulaire de la carte">
+          <div class="form-group col-md-6">
+            <label for="">CVV</label>
+            <input type="" class="form-control" placeholder="CVV">
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="">Date d'expiration</label>
-              <input type="date" class="form-control" placeholder="Date d'expiration">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="">CVV</label>
-              <input type="" class="form-control" placeholder="CVV">
-            </div>
-          </div>
-          <%= link_to "Confirmer le paiement", mes_reservations_path, class: "btn btn-primary mt-2"%>
-        </form>
-      </div>
+        </div>
+        <%= link_to "Confirmer le paiement", mes_reservations_path, class: "btn btn-primary mt-2"%>
+      </form>
     </div>
   </div>
 </div>
