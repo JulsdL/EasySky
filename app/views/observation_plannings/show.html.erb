@@ -1,25 +1,36 @@
-<div class="container">
-  <div classe="titre">
+<div class= "container align-self-center">
+  <div class="titre m-3">
     <h2> <%= "#{@observation_planning.name} pour #{@observation_planning.user.first_name}" %></h2>
-    <h3><%= "De #{@observation_planning.start_time} à #{@observation_planning.end_time}" %></h3>
+    <h3><%= "De #{@observation_planning.start_time.strftime("%H:%M")} à #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
   </div>
-  <div class="sunmoon">
+  <div class="sunmoon form-row d-flex mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
-    <%= image_tag "moonphasels.png", width: '150', height: '100', crop: :fill %>
-    <%= image_tag "sunriseset.png", width: '150', height: '100', crop: :fill%>
+    <div class = "col-6">
+    <%= image_tag "moonphasels.png", width: '90%', crop: :fill %>
+    </div>
+    <div class = "col-6">
+    <%= image_tag "sunriseset.png", width: '100%', crop: :fill %>
+    </div>
   </div>
   <h3> Proposition d'objets célestes à observer</h3>
-  <div class="container mt-3">
+  <div class="container">
     <%# Display all the celestial bodies of the observation planning%>
     <% heure_observation = @observation_planning.start_time %>
     <% @observation_planning.celestial_bodies.each do |celestial_body| %>
-      <div class="observation_plan_card">
-        <%= "#{celestial_body.name}" %>
-        <%= cl_image_tag celestial_body.photo.key, width: '100', height: '67', crop: :fill %>
-        <p>Heure conseillée d'observation: <%= "#{heure_observation + 15.minutes}" %></p>
-        <p>Elévation: 35°</p>
-        <p>Orientation: SSE</p>
-        <p>Pointer le télescope vers <%= "#{celestial_body.name}" %></p>
+      <div class="observation-plan-card form-row d-flex mb-4">
+        <div class= "image col-4">
+          <%= cl_image_tag celestial_body.photo.key %>
+        </div>
+        <div class="observation-plan-card-infos col-8">
+          <h6><%= "#{celestial_body.name}" %></h6>
+          <p><strong>Heure conseillée d'observation:</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
+            <p><strong>Elévation:</strong> 35°</p>
+            <p><strong>Orientation:</strong> SSE</p>
+          <%# <%= image_tag "target.png", width: '20', height: '20', crop: :fill %>
+          <button class="btn-straight my-2">Pointer le télescope vers <%= "#{celestial_body.name}" %></button>
+        </div>
         <% heure_observation += 15.minutes %>
       </div>
     <% end %>
+  </div>
+</div>

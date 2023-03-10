@@ -26,7 +26,7 @@ class Booking < ApplicationRecord
     # the booking date is the observation planning date and start time is 20:00 and end time is 22:00
     planning.start_time = date + 20.hours
     planning.end_time = date + 22.hours
-    planning.name = "Plan d'observation du #{date}"
+    planning.name = "Plan d'observation du #{date.strftime("%d.%m.%y")}"
     planning.save
   end
 

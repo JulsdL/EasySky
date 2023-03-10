@@ -218,7 +218,7 @@ puts "Finished creating bookings"
 # Creating 4 plannings
 
 planning = ObservationPlanning.new(
-  name: "Soirée du 07/03/2022",
+  name: "Plan d'observation du 07/03/2022",
   start_time: Time.new(2022, 03, 07, 21, 00, 00),
   end_time: Time.new(2022, 03, 07, 23, 30, 00),
   user_id: User.all.sample.id
@@ -228,7 +228,7 @@ count += 1
 puts "#{count}: Created #{planning.name}"
 
 planning = ObservationPlanning.new(
-  name: "Soirée du 23/03/2022",
+  name: "Plan d'observation du 23/03/2022",
   start_time: Time.new(2022, 03, 23, 21, 30, 00),
   end_time: Time.new(2022, 03, 23, 23, 30, 00),
   user_id: User.all.sample.id
@@ -238,7 +238,7 @@ count += 1
 puts "#{count}: Created #{planning.name}"
 
 planning = ObservationPlanning.new(
-  name: "Soirée du 10/04/2022",
+  name: "Plan d'observation du 10/04/2022",
   start_time: Time.new(2022, 04, 10, 21, 00, 00),
   end_time: Time.new(2022, 04, 10 , 23, 30, 00),
   user_id: User.all.sample.id
@@ -248,7 +248,7 @@ count += 1
 puts "#{count}: Created #{planning.name}"
 
 planning = ObservationPlanning.new(
-  name: "Soirée du 12/04/2022",
+  name: "Plan d'observation du 12/04/2022",
   start_time: Time.new(2022, 04, 12, 21, 00, 00),
   end_time: Time.new(2022, 04, 12, 23, 15, 00),
   user_id: User.all.sample.id
