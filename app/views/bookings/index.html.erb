@@ -1,21 +1,27 @@
-<h1> Mes Réservations </h1>
+<div class="row mt-4 mb-4">
+  <h2 class="text-shadow" style="font-size: 2rem"> Mes Réservations </h2>
+</div>
 
-<div class="row justify-content-center">
+
+<div class="container justify-content-center">
   <% @bookings.each do |booking| %>
     <%# display only the bookings for the current user if there is any bookings%>
     <% if booking.user_id == current_user.id %>
-      <div class="row card-booking col-md-5 mx-auto">
+      <div class="row checkout-card col-md-10 mx-auto">
         <div class= "card-booking-info">
           <div class="row">
-            <div class="col-10">
-              <h6>Date: <%= booking.date.strftime("%d.%m.%y") %></h6>
+            <div class="col-4">
+              <h5>Date: <%= booking.date.strftime("%d.%m.%y") %></h5>
             </div>
-            <div class="col-2 card-booking-status">
-              <%= booking.status %>
+            <div class="col-8 text-end">
+              <span class="card-booking-status">
+                <%= booking.status %>
+              </span>
             </div>
           </div>
-          <p>Adresse de livraison: <%="#{booking.street} - #{booking.zip} #{booking.city}"%></p>
-          <p>Vos options:
+          <p><strong>Adresse de livraison: </strong></p>
+          <p><%="#{booking.street} - #{booking.zip} #{booking.city}"%></p>
+          <p><strong>Vos options:</strong>
           <% booking.items.each do |item|%>
             <%= item.name%>
             <%= item.price%>
