@@ -13,7 +13,7 @@
     <% @celestial_bodies.shuffle.take(8).each do |celestial_body| %>
       <div class="celestial-card">
         <div class="celestial-card-img">
-          <%= cl_image_tag celestial_body.photo.key, width: '390', height: '200', crop: :fill %>
+          <%= cl_image_tag celestial_body.photo.key, width: '100%', height: '200' %>
         </div>
         <div class="card-body">
           <h3 class="card-title" style="text-align: left"><strong><%= celestial_body.name %></strong></h3>
