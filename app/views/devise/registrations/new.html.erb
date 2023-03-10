@@ -8,27 +8,12 @@
       <div class="form-inputs">
         <%= f.input :first_name,
                 required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first_name" }%>
+                input_html: { autofocus: true, autocomplete: "first_name", color:"white" }%>
         <%= f.input :last_name,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "last_name" }%>
-        <%= f.input :street,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "street" }%>
-        <%= f.input :zip,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "zip" }%>
-        <%= f.input :city,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "city" }%>
         <%= f.input :email,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "email" }%>
         <%= f.input :password,
                 required: true,
