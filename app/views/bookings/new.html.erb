@@ -1,28 +1,36 @@
 <div class="container">
   <div class="container">
-    <h1>Informations</h1>
+    <h1 CLASS="text-shadow">RESERVATION</h1>
   </div>
   <div class="container">
-    <div class="container">
+    <div class="container text-center">
       <p>Sélectionnez les dates qui vous intéressent</p>
     </div>
-    <div class="container">
+    <div class="observation-plan-card px-4 py-4 mb-4">
       <%= simple_form_for @booking do |f|%>
         <%= f.input :date, as: :date, html5: true %>
         <%= f.input :street %>
         <%= f.input :city %>
         <%= f.input :zip %>
-        <div class="container">
-          <p>sélectionnez les options qui vous intéressent</p>
-          <%= f.collection_check_boxes :item_ids, @items, :id, :name %>
+    </div>
+        <div class="observation-plan-card px-4 py-4 mb-4">
+          <p>Sélectionnez les options qui vous intéressent</p>
+          <%= f.collection_check_boxes :item_ids, @items, :id, :name do |b| %>
+          <div>
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+          <% end %>
         </div>
-        <div class="container">
+        <%# <div class="container">
           <p>ce que vous pourrez voir ce soir là</p>
         </div>
         <div class="container">
           <p>card tonight highlight</p>
+        </div> %>
+        <div class="container mb-4">
+          <%= f.submit :Suivant, class: 'btn-straight'%>
+          <% end %>
         </div>
-        <%= f.submit :suivant %>
-      <% end %>
-    </div>
+
   </div>
