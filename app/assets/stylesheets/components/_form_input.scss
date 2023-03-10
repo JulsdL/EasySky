@@ -1,7 +1,9 @@
-.form-control {
-  color: white;
-
-  &:focus {
+.devise-form {
+  .form-control {
     color: white;
+
+    &:focus {
+      color: white;
+    }
   }
 }

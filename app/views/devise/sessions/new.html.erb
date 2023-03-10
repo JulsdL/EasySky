@@ -1,32 +1,28 @@
-
-<div class="login-container">
+<div class="login-container devise-form">
   <div class="container">
     <h2 class="text-shadow" style="color: white; font-size: 2rem">SE CONNECTER A EASYSKY</h2>
   </div>
   <div class="row" style="color:white">
     <div class="col-md-6 offset-md-3">
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email,
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email", style: 'color: white' } %>
-        <%= f.input :password,
+          <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password", style: 'color: white' } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Se connecter!", class: "btn-straight" %>
+        </div>
+      <% end %>
+      <div class="row">
+        <%= render "devise/shared/links"%>
       </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Se connecter!", class: "btn-straight" %>
-      </div>
-    <% end %>
-    <div class="row">
-       <%= render "devise/shared/links"%>
     </div>
-
-    </div>
-
   </div>
-    </div>
-
+</div>
 </div>
