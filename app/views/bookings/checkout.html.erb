@@ -5,9 +5,9 @@
   </div>
   <div class="checkout-card">
     <div class="row">
-      <h2>Information de client</h2>
+      <h2>Informations de facturation</h2>
       <div class="col">
-        <p><strong>Nom de facturation</strong></p>
+        <p><strong>Nom:</strong></p>
       </div>
       <div class="col">
         <p><%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <p><strong>Adresse de facturation</strong></p>
+        <p><strong>Adresse:</strong></p>
       </div>
       <div class="col">
         <p> <%= "#{current_user.street} #{current_user.zip} #{current_user.city}"  %></p>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <p><strong>Mail de facturation</strong></p>
+        <p><strong>Mail:</strong></p>
       </div>
       <div class="col">
         <p> <%= current_user.email %></p>
