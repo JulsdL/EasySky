@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   get "/mes-réservations", to: "bookings#index", as: :mes_reservations
-  get "/bookings/:id/checkout/paiement", to: "bookings#paiement"
+  get "/bookings/:id/checkout/paiement", to: "bookings#paiement", as: :paiement
   get "users/dashboard", to: "pages#dashboard"
   get "users/informations", to: "pages#informations"
   resources :bookings, only: %i[new create show] do
