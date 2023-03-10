@@ -1,14 +1,24 @@
 <%# Display all the observation plannings %>
-<div class="container">
-  <h2>Vos plannings d'observation</h2>
-  <div class="observation_plannings">
-    <% @observation_plannings.each do |observation_planning| %>
-      <p>
-        <%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %>
-        <%= "De #{observation_planning.start_time} à #{observation_planning.end_time}" %>
-      </p>
-      <%# Display the link to show the observation planning details %>
-      <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "col-4 btn-straight" %>
-    <% end %>
+<div class= "container align-self-center">
+  <div class="m-3">
+    <h2> Mes plannings </h2>
+  </div>
+  <div class= "col-md-5 mx-auto">
+      <div class="observation_plannings">
+        <% @observation_plannings.each do |observation_planning| %>
+          <div class="card-paiement col-md-12">
+            <p>
+              <div class="row m-1">
+              <strong><%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %></strong>
+              </div>
+              <div class="row m-3">
+              <%= "Date de début #{observation_planning.start_time.strftime("%H:%M")} - Date de fin #{observation_planning.end_time.strftime("%H:%M")}" %>
+              </div>
+            </p>
+            <%# Display the link to show the observation planning details %>
+            <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "btn-straight m-auto text-center", style: "width:250px" %>
+          </div>
+        <% end %>
+    </div>
   </div>
 </div>
