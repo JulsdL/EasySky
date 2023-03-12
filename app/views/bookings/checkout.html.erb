@@ -1,32 +1,32 @@
-<div class="container mt-5">
+<div class="container-fluid mt-5">
   <div class="row text-center">
-    <h1 class="text-shadow" style="text-align: center">CONFIRMER LA RESERVATION</h1>
-    <h2>Vérifiez les informations de réservation avant de procéder au paiement</h2>
+    <h1 class="text-shadow" style="font-size: 2rem">CONFIRMER LA RESERVATION</h1>
+    <h4>Vérifiez les informations de réservation avant de procéder au paiement</h4>
   </div>
   <div class="checkout-card">
     <div class="row">
       <h2>Informations de facturation</h2>
-      <div class="col-6">
+      <div class="col-4">
         <p><strong>Nom:</strong></p>
       </div>
-      <div class="col-6">
+      <div class="col-8">
         <p><%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <p><strong>Adresse:</strong></p>
       </div>
-      <div class="col-6">
+      <div class="col-8">
         <p> <%= "#{current_user.street} #{current_user.zip} #{current_user.city}"  %></p>
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-4">
         <p><strong>Mail:</strong></p>
       </div>
-      <div class="col-6">
-        <p> <%= current_user.email %></p>
+      <div class="col-8">
+        <p class="text-truncate"> <%= current_user.email %></p>
       </div>
     </div>
   </div>
@@ -41,6 +41,6 @@
       </div>
     </div>
     <div>
-      <%= link_to "Procéder au paiement", paiement_path, class: "btn btn-primary mt-2"%>
+      <%= link_to "Procéder au paiement", paiement_path, class: "btn-straight"%>
     </div>
   </div>
