@@ -1,18 +1,19 @@
 <%# Display all the observation plannings %>
-<div class= "container align-self-center">
+<div class= "container fluid">
   <div class="titre m-3">
     <h2 class="text-shadow" style="font-size: 3rem"> MES PLANNINGS </h2>
   </div>
-  <div class= "col-sm-5 mx-auto">
-      <div class="observation_plannings">
+  <div class= "d-flex flex-column align-self-center">
+  <div class= "col-md-5 mx-auto">
+      <div>
         <% @observation_plannings.each do |observation_planning| %>
           <div class="card-paiement">
             <p>
-              <div class="row m-1">
+              <div class="row px-4 m-1">
               <strong><%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %></strong>
               </div>
-              <div class="row m-3">
-              <%= "Date de début #{observation_planning.start_time.strftime("%H:%M")} - Date de fin #{observation_planning.end_time.strftime("%H:%M")}" %>
+              <div class="row px-4 m-3">
+              <%= "De #{observation_planning.start_time.strftime("%H:%M")} à #{observation_planning.end_time.strftime("%H:%M")}" %>
               </div>
             </p>
             <%# Display the link to show the observation planning details %>

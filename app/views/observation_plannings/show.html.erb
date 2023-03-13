@@ -1,15 +1,15 @@
-<div class= "container align-self-center">
-  <div class="titre m-3">
-    <h2> <%= "#{@observation_planning.name} pour #{@observation_planning.user.first_name}" %></h2>
-    <h3><%= "De #{@observation_planning.start_time.strftime("%H:%M")} à #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
+<div class= "container fluid">
+  <div class="titre m-3" >
+    <h2 class="text-shadow" style="font-size: 3rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
+    <h3 class="text-shadow" style="font-size: 2rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À  #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
   </div>
   <div class="sunmoon form-row d-flex mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
     <div class = "col-6">
-      <%= image_tag "moonphasels.png", width: '90%', crop: :fill %>
+      <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
     </div>
     <div class = "col-6">
-      <%= image_tag "sunriseset.png", width: '100%', crop: :fill %>
+      <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
     </div>
   </div>
   <h3> Proposition d'objets célestes à observer</h3>

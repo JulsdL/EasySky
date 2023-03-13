@@ -28,10 +28,6 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def paiement
-    @booking = Booking.find(params[:id])
-    @booking.status = :confirmé
-  end
 
   private
 
