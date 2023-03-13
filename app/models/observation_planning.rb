@@ -1,4 +1,7 @@
 require "json"
+require "httparty"
+require "time"
+
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
   has_many :targets
@@ -19,7 +22,7 @@ class ObservationPlanning < ApplicationRecord
 
   # Retourne le décalage horaire en heure entre l'heure locale et l'heure UTC pour la position de l'observateur
   def utc_offset
-    -1
+    1
   end
 
   # Find astronomical objects visible above the horizon from the observer's location at a given time
@@ -67,7 +70,7 @@ class ObservationPlanning < ApplicationRecord
     return ra, dec
   end
 
-    # Calculate object's altitude and azimuth at a given time and location
+  # Calculate object's altitude and azimuth at a given time and location
   def calculate_altitude_and_azimuth(ra, dec, lst, observer_latitude, _observer_longitude)
     object_altitude = Math.asin((Math.sin(dec * Math::PI / 180) * Math.sin(observer_latitude * Math::PI / 180)) + (Math.cos(dec * Math::PI / 180) * Math.cos(observer_latitude * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
     object_azimuth = Math.atan2(-Math.sin((lst - ra) * Math::PI / 180), (Math.tan(observer_latitude * Math::PI / 180) * Math.cos(dec * Math::PI / 180)) - (Math.sin(dec * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
@@ -82,5 +85,25 @@ class ObservationPlanning < ApplicationRecord
   def hms_to_decimal(hours, minutes, seconds)
     decimal = hours + (minutes / 60.0) + (seconds / 3600.0)
     return decimal
+  end
+
+  # call api to get sunrise and sunset infos for the latitude and longitude of User
+  # and the date of the observation
+  # date in format YYYY-MM-DD
+  def sun(date)
+    latitude = user.latitude
+    longitude = user.longitude
+    api_url = "https://api.sunrise-sunset.org/json?lat=#{latitude}&lng=#{longitude}&date=#{date}"
+
+    response = HTTParty.get(api_url)
+    json = JSON.parse(response.body)
+
+    unformated_rise = Time.parse(json['results']['nautical_twilight_begin'])
+    sunrise = (unformated_rise + utc_offset.hours).strftime('%H:%M')
+    unformated_set = Time.parse(json['results']['nautical_twilight_end'])
+    sunset = (unformated_set + utc_offset.hours).strftime('%H:%M')
+
+    self.sunrise = sunrise
+    self.sunset = sunset
   end
 end
