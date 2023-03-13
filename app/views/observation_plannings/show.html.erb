@@ -16,6 +16,7 @@
     <h2> Proposition d'objets célestes à observer</h2>
     <%# Display all the celestial bodies of the observation planning%>
     <% heure_observation = @observation_planning.start_time %>
+    <%# raise %>
     <% @observation_planning.celestial_bodies.each do |celestial_body| %>
       <div class="observation-plan-card col-12 d-flex flex-row mb-4">
         <div class= "col-4 col-lg-4">
@@ -27,9 +28,9 @@
             <p><strong>Heure conseillée d'observation:</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
             <div class="d-flex flex-row">
               <i class="fa-solid fa-arrow-up" ></i>
-              <p><strong>Elévation:</strong> 35°</p>
+              <p><strong>Elévation:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude] %></p>
             </div>
-            <p><strong>Orientation:</strong> SSE</p>
+            <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
           </div>
           <div class="d-flex flex-row">
             <%= image_tag "target.png", width: '20', height: '20', crop: :fill, class:"target" %>
