@@ -1,7 +1,4 @@
 require "json"
-require 'geocoder'
-require 'timezone'
-
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
   has_many :targets

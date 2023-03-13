@@ -57,8 +57,6 @@ gem 'validates_timeliness', '~> 7.0.0.beta1'
 gem 'faker'
 gem "astronomy"
 gem "geocoder"
-gem "tzinfo"
-gem "timezone"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
