@@ -1,5 +1,6 @@
 require "json"
-require "tzinfo"
+require 'geocoder'
+require 'timezone'
 
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
@@ -18,11 +19,17 @@ class ObservationPlanning < ApplicationRecord
     seconds = (((decimal - hours) * 60) - minutes) * 60
     return hours, minutes, seconds
   end
+
+  # Retourne le décalage horaire en heure entre l'heure locale et l'heure UTC pour la position de l'observateur
+  def utc_offset
+    -1
+  end
+
   # Find astronomical objects visible above the horizon from the observer's location at a given time
   def visible_objects
     observer_latitude = user.latitude # Latitude of observer in decimal degrees
     observer_longitude = user.longitude # Longitude of observer in decimal degrees
-    observation_start_utc = start_time - 1.hours # Start time of observation in UTC (valable seulement pour CET pour l'instant)
+    observation_start_utc = start_time - utc_offset.hours # Start time of observation in UTC
     lst = local_sidereal_time(observer_longitude, observation_start_utc) # Local sidereal time at start of observation
     objects = load_objects_from_file('db/catalogue-de-messier.json') # Load astronomical objects from a file
     selected_objects = [] # Initialize an empty array to store visible objects
@@ -32,21 +39,19 @@ class ObservationPlanning < ApplicationRecord
       ra, dec = parse_ra_and_dec(object) # Extract right ascension and declination from object data
       altitude, azimuth = calculate_altitude_and_azimuth(ra, dec, lst, observer_latitude, observer_longitude) # Calculate altitude and azimuth of object at start of observation
 
-      if altitude > 5 # If the object is above the horizon, add it to the selected_objects array with its altitude and azimuth
+      if altitude > 10 # If the object is above the horizon, add it to the selected_objects array with its altitude and azimuth
         selected_objects << object.merge(altitude: altitude, azimuth: azimuth)
       end
     end
-    # Trier les objets sélectionnés par ordre décroissant de leur altitude
-    selected_objects.sort_by! { |obj| -obj[:altitude] }
-    return selected_objects # Return the array of visible objects
+    # Retourne un array des objets visible trié par ordre décroissant de leur altitude
+    return selected_objects.sort_by! { |obj| -obj[:altitude] } # Return the array of visible objects
   end
 
   # Calculate the local sidereal time at a given location and time
   def local_sidereal_time(observer_longitude, observation_start_utc)
     j2000 = Time.utc(2000, 1, 1, 12, 0, 0).to_i # Julian date of J2000.0 epoch
     days_since_j2000 = (observation_start_utc.to_f - j2000) / 86_400 # Number of days since J2000.0 epoch
-    utc_offset_hours = observation_start_utc.utc_offset / 3600 # UTC offset of observer's location in hours
-    (100.46 + (0.985647 * days_since_j2000) + observer_longitude + (15 * utc_offset_hours)) % 360 # Calculate the local sidereal time in degrees
+    (100.46 + (0.985647 * days_since_j2000) + observer_longitude + (15 * utc_offset)) % 360 # Calculate the local sidereal time in degrees
   end
 
   # Load astronomical objects from a JSON file
