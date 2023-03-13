@@ -3,13 +3,23 @@
     <h1 class="text-shadow" style="text-align: center">EASYSKY</h1>
     <h3 style="text-align: center">Explorez le ciel depuis chez vous</h3>
   </div>
-  <div class="home-header-image">
-    <%= image_tag "Moon.png", alt: "Moon", style: 'max-width: 100vh; height: auto' %>
-  </div>
+
+  <section>
+    <div class="home-header-moon">
+    <%#= image_tag "Moon.png", alt: "Moon", style: 'max-width: 100vh; height: auto' %>
+    </div>
+  </section>
+
   <div class="row justify-content-center" style="text-align: center">
-    <%= link_to "Découvrir", objects_path, class:"col-4 btn-straight" %>
-    <%= link_to "Réserver", new_booking_path ,class:"col-4 btn-straight" %>
+    <div class="col">
+      <%= link_to "Découvrir", objects_path, class:"col-3 btn-straight" %>
+    </div>
+    <div class="col">
+      <%= link_to "Réserver", new_booking_path ,class:"col-3 btn-straight" %>
+    </div>
+
   </div>
+
 </div>
 <div class="home-info">
   <div class="home-info-section">

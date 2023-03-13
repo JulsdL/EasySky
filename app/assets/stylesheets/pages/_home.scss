@@ -12,25 +12,55 @@ h1, h2, h3, h4 {
 }
 
 .home-header {
-
+  width: 100%;
   height: 720px;
   padding: 20px;
   color: white;
-  background-image: asset-url('earthbg.jpg'), linear-gradient(#000000, #092536);
-  background-blend-mode: revert;
+  background-image: asset-url('earthbg.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
   background-size: cover;
-  background-position: center center;
+
 }
 
 .home-header-title {
   margin-top: 30px;
 }
 
-.home-header-image {
+
+section {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 400px;
-  // object-fit: contain;
+  transform-style: preserve-3d;
+
+}
+
+.home-header-moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background-image: asset-url('Moon_surface.png')  ;
+  background-size: cover;
+  background-repeat: repeat-x;
+  border-radius: 50%;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 1)  ;
+  animation: animateMoon 90s linear infinite;
+
+
+}
+
+@keyframes animateMoon {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -1024px 0;
+  }
 }
 
 .home-info {
