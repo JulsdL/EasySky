@@ -1,9 +1,10 @@
 <div class="container-fluid mt-5">
-  <div class="row text-center">
-    <h2 class="text-shadow" style="font-size: 3rem">CONFIRMER LA RESERVATION</h2>
+  <div class="container" style="max-width: 700px">
+    <div class="row text-center">
+    <h1 class="text-shadow" style="font-size: 2rem">CONFIRMER LA RESERVATION</h1>
     <h4>Vérifiez les informations de réservation avant de procéder au paiement</h4>
   </div>
-  <div class="checkout-card">
+  <div class="row checkout-card col-md-10 mx-auto">
     <div class="row">
       <h2>Informations de facturation</h2>
       <div class="col-4">
@@ -31,16 +32,17 @@
     </div>
   </div>
   <div>
-    <div class="checkout-card">
+    <div class="row checkout-card col-md-10 mx-auto">
       <h2>Détails de la réservation</h2>
       <% @booking.items.each do |item|%>
         <%= render "booking_options", item: %>
       <% end %>
-      <div class="row">
+      <div>
         <p style="text-align: right"><strong>Total <%= @booking.price %> CHF</strong></p>
       </div>
     </div>
-    <div>
+    <div class="mb-4">
       <%= link_to "Procéder au paiement", paiement_path, class: "btn-straight"%>
     </div>
+  </div>
   </div>
