@@ -22,7 +22,7 @@ User.destroy_all
 
 
 # Create a seed to create selected number of celestial bodies from the JSON file catalogue-de-messier.json
-puts "How many celestial bodies do you want to create (max 110)?"
+puts "How many celestial bodies do you want to create (!!! conseillé 110 !!!)?"
 print "> "
 number = gets.chomp.to_i
 
