@@ -7,9 +7,12 @@
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
     <div class = "col-6">
       <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
+      <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
     </div>
     <div class = "col-6">
       <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
+      <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
+      <p> Lever: <%= @observation_planning.sunrise %> Coucher: <%= @observation_planning.sunset%> </p>
     </div>
   </div>
   <h3> Proposition d'objets célestes à observer</h3>

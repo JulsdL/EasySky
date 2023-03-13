@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_12_185928) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_153837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_185928) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sunrise"
+    t.string "sunset"
     t.index ["user_id"], name: "index_observation_plannings_on_user_id"
   end
 
