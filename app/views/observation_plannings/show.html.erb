@@ -6,16 +6,17 @@
   <div class="sunmoon form-row d-flex mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
     <div class = "col-6">
-    <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
+      <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
     </div>
     <div class = "col-6">
-    <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
+      <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
     </div>
   </div>
   <h3> Proposition d'objets célestes à observer</h3>
   <div class="container">
     <%# Display all the celestial bodies of the observation planning%>
     <% heure_observation = @observation_planning.start_time %>
+    <%# raise %>
     <% @observation_planning.celestial_bodies.each do |celestial_body| %>
       <div class="observation-plan-card form-row d-flex mb-4">
         <div class= "image col-4">
@@ -24,8 +25,8 @@
         <div class="observation-plan-card-infos col-8">
           <h6><%= "#{celestial_body.name}" %></h6>
           <p><strong>Heure conseillée d'observation:</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
-            <p><strong>Elévation:</strong> 35°</p>
-            <p><strong>Orientation:</strong> SSE</p>
+          <p><strong>Elévation:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude] %></p>
+          <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
           <%# <%= image_tag "target.png", width: '20', height: '20', crop: :fill %>
           <button class="btn-straight my-2">Pointer le télescope vers <%= "#{celestial_body.name}" %></button>
         </div>
