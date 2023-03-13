@@ -13,3 +13,12 @@
   margin: auto;
   text-decoration: none;
 }
+
+.btn-straight:hover,
+.btn-straight:focus {
+  color: white;
+  box-shadow: -5px 5px 10px orange;
+  transform: translateY(-0.25em);
+  transition-timing-function: linear;
+  transition-duration: 0.3s;
+}
