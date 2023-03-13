@@ -5,5 +5,6 @@ class ObservationPlanningsController < ApplicationController
 
   def show
     @observation_planning = ObservationPlanning.find(params[:id])
+    @visible_objects = @observation_planning.visible_objects
   end
 end
