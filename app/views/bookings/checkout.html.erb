@@ -3,44 +3,57 @@
     <h2 class="text-shadow" style="font-size: 3rem">CONFIRMER LA RESERVATION</h2>
     <h4>Vérifiez les informations de réservation avant de procéder au paiement</h4>
   </div>
-  <div class="checkout-card">
-    <div class="row">
-      <h2>Informations de facturation</h2>
-      <div class="col-4">
-        <p><strong>Nom:</strong></p>
+
+  <div class="container justify-content-center" style="max-width: 700px">
+    <div class="row checkout-card col-md-10 mx-auto">
+
+      <div class="mb-2">
+        <h2>Informations de facturation</h2>
       </div>
-      <div class="col-8">
-        <p><%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <p><strong>Adresse:</strong></p>
-      </div>
-      <div class="col-8">
-        <p> <%= "#{current_user.street} #{current_user.zip} #{current_user.city}"  %></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <p><strong>Mail:</strong></p>
-      </div>
-      <div class="col-8">
-        <p class="text-truncate"> <%= current_user.email %></p>
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="checkout-card">
-      <h2>Détails de la réservation</h2>
-      <% @booking.items.each do |item|%>
-        <%= render "booking_options", item: %>
-      <% end %>
+
       <div class="row">
+        <div class="col-4">
+          <p><strong>Nom:</strong></p>
+        </div>
+        <div class="col-8">
+          <p><%= "#{current_user.first_name} #{current_user.last_name}" %> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p><strong>Adresse:</strong></p>
+        </div>
+        <div class="col-8">
+          <p> <%= "#{current_user.street} #{current_user.zip} #{current_user.city}"  %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <p><strong>Mail:</strong></p>
+        </div>
+        <div class="col-8">
+          <p class="text-truncate"> <%= current_user.email %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row checkout-card col-md-10 mx-auto">
+      <div class="mb-2">
+        <h2>Détails de la réservation</h2>
+      </div>
+
+      <div class="row">
+      <% @booking.items.each do |item|%>
+      <%= render "booking_options", item: %>
+      <% end %>
+      </div>
+
+      <div class="row mt-2">
         <p style="text-align: right"><strong>Total <%= @booking.price %> CHF</strong></p>
       </div>
     </div>
-    <div>
+    <div class="mb-4">
       <%= link_to "Procéder au paiement", paiement_path, class: "btn-straight"%>
     </div>
+
   </div>
