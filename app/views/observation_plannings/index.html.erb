@@ -8,11 +8,11 @@
         <% @observation_plannings.each do |observation_planning| %>
           <div class="card-paiement">
             <p>
-              <div class="row m-1">
+              <div class="row px-4 m-1">
               <strong><%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %></strong>
               </div>
-              <div class="row m-3">
-              <%= "Date de début #{observation_planning.start_time.strftime("%H:%M")} - Date de fin #{observation_planning.end_time.strftime("%H:%M")}" %>
+              <div class="row px-4 m-3">
+              <%= "De #{observation_planning.start_time.strftime("%H:%M")} à #{observation_planning.end_time.strftime("%H:%M")}" %>
               </div>
             </p>
             <%# Display the link to show the observation planning details %>
