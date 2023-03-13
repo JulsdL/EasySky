@@ -13,6 +13,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.status = :attente
+    @booking.user.street = @booking.street
+    @booking.user.city = @booking.city
+    @booking.user.zip = @booking.zip
+    @booking.user.save
     if @booking.save
       redirect_to checkout_booking_path(@booking)
     else
