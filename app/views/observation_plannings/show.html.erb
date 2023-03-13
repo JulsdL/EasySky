@@ -22,9 +22,11 @@
         <%= cl_image_tag celestial_body.photo.key, class:"image"%>
         <h3><%= "#{celestial_body.name}" %></h3>
       </div>
-      <div class="observation-plan-card-infos col-8 col-lg-8 py-2 ">
+      <div class="observation-plan-card-infos col-6 col-lg-6 py-2 ">
         <div class="texte px-1">
-          <p><strong>Heure conseillée d'observation:</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>            <div class="d-flex flex-row  align-items-center">
+          <p><strong>Observer à :</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
+          <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
+          <div class="d-flex flex-row  align-items-center">
           <i class="fa-solid fa-arrow-up px-1" ></i>
           <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
         </div>
@@ -33,7 +35,10 @@
             <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
           </div>
         </div>
-        <button class="btn-straight mt-1 mx-auto">Pointer le télescope vers <%= "#{celestial_body.name}" %></button>
+        <%#<button class="btn-straight mt-1 mx-auto">Pointer le télescope vers <%= "#{celestial_body.name}" ></button%>
+      </div>
+      <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
+        <%= image_tag "target.png",  width:'30', height:'30'%>
       </div>
       <% heure_observation += 15.minutes %>
     </div>
