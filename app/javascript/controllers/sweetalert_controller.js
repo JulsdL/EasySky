@@ -12,7 +12,7 @@ export default class extends Controller {
     }).then((value) => {
       switch (value) {
         case true:
-          window.location.href = "";
+          window.location.href = '/';
           break;
 
         default:
