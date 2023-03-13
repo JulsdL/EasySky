@@ -22,13 +22,10 @@ User.destroy_all
 
 
 # Create a seed to create selected number of celestial bodies from the JSON file catalogue-de-messier.json
-puts "How many celestial bodies do you want to create (!!! conseillé 110 !!!)?"
-print "> "
-number = gets.chomp.to_i
 
-puts "Creating #{number} celestial bodies..."
+puts "Creating 110 celestial bodies..."
 file = File.read('db/catalogue-de-messier.json')
-data = JSON.parse(file).shuffle.take(number)
+data = JSON.parse(file)
 count = 0
 
 data.each do |celestial_body|
