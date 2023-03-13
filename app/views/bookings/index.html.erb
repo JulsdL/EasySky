@@ -1,8 +1,6 @@
 <div class="row mt-4 mb-4">
-  <h1 class="text-shadow"> MES RESERVATIONS </h1>
+  <h2 class="text-shadow" style="font-size: 3rem"> MES RESERVATIONS </h2>
 </div>
-
-
 <div class="container justify-content-center">
   <% @bookings.each do |booking| %>
     <%# display only the bookings for the current user if there is any bookings%>
@@ -15,6 +13,7 @@
             </div>
             <div class="col-8 text-end">
               <span class="card-booking-status">
+                <% booking.status = :confirmé %>
                 <%= booking.status %>
               </span>
             </div>
@@ -22,16 +21,16 @@
           <p><strong>Adresse de livraison: </strong></p>
           <p><%="#{booking.street} - #{booking.zip} #{booking.city}"%></p>
           <p><strong>Vos options:</strong>
-          <% booking.items.each do |item|%>
-            <%= item.name%>
-            <%= item.price%>
-          <% end %>
-          <p>Prix total: CHF <%= booking.price%>.-</p>
+            <% booking.items.each do |item|%>
+              <%= item.name%>
+              <%= item.price%>
+            <% end %>
+            <p>Prix total: CHF <%= booking.price%>.-</p>
+          </div>
+          <%# <% if booking.status == "pending" %>
+          <%#<%= link_to "Cancel booking", booking_path(booking), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+          <%# <% end %>
         </div>
-        <%# <% if booking.status == "pending" %>
-        <%#<%= link_to "Cancel booking", booking_path(booking), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-        <%# <% end %>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
