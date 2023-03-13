@@ -1,9 +1,10 @@
 <%# Display all the observation plannings %>
-<div class= "container  d-flex flex-column align-self-center">
+<div class= "container fluid">
   <div class="titre m-3">
     <h2 class="text-shadow" style="font-size: 3rem"> MES PLANNINGS </h2>
   </div>
-  <div class= "col-sm-5 mx-auto">
+  <div class= "d-flex flex-column align-self-center">
+  <div class= "col-md-5 mx-auto">
       <div>
         <% @observation_plannings.each do |observation_planning| %>
           <div class="card-paiement">

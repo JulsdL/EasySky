@@ -1,15 +1,28 @@
 <div class= "container fluid">
   <div class="titre m-3" >
+<<<<<<< HEAD
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
     <h3 class="text-shadow" style="font-size: 1.5rem"><%= "De #{@observation_planning.start_time.strftime("%H:%M")} à #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
+=======
+    <h2 class="text-shadow" style="font-size: 3rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
+    <h3 class="text-shadow" style="font-size: 2rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À  #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
+>>>>>>> fc486f5153669b0511ac13da5f499edc6e3c4f6d
   </div>
   <div class="sunmoon col-12 d-flex flex-row justify-content-center  mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
+<<<<<<< HEAD
     <div class = "col-6 m-1 col-lg-5">
     <%= image_tag "moonphasels.png", class:'sunmoonimg' %>
     </div>
     <div class = "col-6 m-1 col-lg-5">
     <%= image_tag "sunriseset.png", class:'sunmoonimg' %>
+=======
+    <div class = "col-6">
+    <%= image_tag "moonphasels.png", width: '100%', crop: :fill, class:"sunmoon" %>
+    </div>
+    <div class = "col-6">
+    <%= image_tag "sunriseset.png", width: '100%', crop: :fill, class:"sunmoon" %>
+>>>>>>> fc486f5153669b0511ac13da5f499edc6e3c4f6d
     </div>
   </div>
   <div class="container fluid">
