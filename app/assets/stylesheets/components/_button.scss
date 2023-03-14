@@ -18,8 +18,9 @@
 .btn-straight:hover,
 .btn-straight:focus {
   color: white;
+  background-color: $dark-orange;
   box-shadow: -5px 5px 10px orange;
   transform: translateY(-0.25em);
   transition-timing-function: linear;
-  transition-duration: 0.3s;
+  transition-duration: 0.35s;
 }
