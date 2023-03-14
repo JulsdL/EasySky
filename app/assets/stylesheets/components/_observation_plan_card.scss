@@ -1,43 +1,72 @@
-.observation-plan-card {
-  overflow: hidden;
-  background: white;
-  border-radius:10px;
-  box-shadow:8px 8px 12px rgba(170, 170, 170, 0.6);
-  color: black;
-  margin:10px;
+body {
+  font-size: 100%
+}
 
-  img {
-    object-fit: cover;
-    max-width: 100%;
-    height: 100%;
+@media screen and (max-width: 30em){
+  .observation-plan-card p {
+    font-size: 0.60em !important;
+  }
+
+  .observation-plan-card h3 {
+    font-size: 1em !important;
+  }
+
+
+}
+
+.observation-plan-card {
+    overflow: hidden;
+    background: white;
+    border-radius:10px;
+    box-shadow:8px 8px 12px rgba(170, 170, 170, 0.6);
+    color: black;
+    margin:10px;
+    max-height: 170px;
+
+    .image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+  }
+
+  h3 {
+    padding-top: 10px;
+    font-size:32px ;
+    padding-left: 12px;
+    font-weight: bold;
+    margin: 0;
+    color:white;
+    position:absolute;
+    z-index: 2;
   }
 
 }
 
 .observation-plan-card .observation-plan-card-infos {
+  max-height: 170px;
   p {
-    font-size: 12px;
-    margin: 0;
-  }
-
-  h6 {
-    padding-top: 10px;
-    font-size: 16px;
-    padding-left: 12px;
-    font-weight: bold;
-    margin: 0;
+    font-size: 18px;
+    padding: 5px;
+    margin: 0px;
   }
 
   .btn-straight {
-    width: 200px;
-    height: 40px;
+    width: 250px;
+    height: 30px;
     font-size:12px
+  }
+
+  i {
+    font-size: 14px;
   }
 
 }
 
-.sunmoon {
-  width: 400px;
-  height: 400px;
+.sunmoonimg {
   object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }

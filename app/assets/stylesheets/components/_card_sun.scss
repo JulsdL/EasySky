@@ -1,0 +1,57 @@
+body {
+  font-size: 100%
+}
+
+@media screen and (max-width: 64em) {
+    .sun-card p {
+      font-size: 2.5em;
+    }
+  }
+
+
+
+@media screen and (max-width: 60em) {
+    .sun-card p {
+      font-size: 2em;
+    }
+  }
+
+  @media screen and (max-width: 30em){
+    .sun-card p {
+      font-size: 0.60em !important;
+    }
+
+    .sun-card h4 {
+      font-size: 0.8em !important;
+    }
+  }
+
+
+.sun-card {
+  overflow: hidden;
+  background-image: asset-url("fondcartesoleil.jpeg");
+  border-radius:10px;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  margin:0px;
+  padding-top: 16px;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 90%;
+    border-radius: 10px;
+
+  }
+
+  p {
+    font-size: 20px;
+    margin:0px;
+  }
+
+  h4{
+    margin:0px;
+    font-size: 32px;
+    font-weight: lighter !important;
+  }
+}

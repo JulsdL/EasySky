@@ -1,12 +1,13 @@
 
 .celestial-card {
-  max-width: 400px;
-  max-height: auto;
+  scroll-snap-align: center;
+  min-width: 250px;
+  height: auto;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 8px 8px 12px rgba(170, 170, 170, 0.6);
   padding: 5px;
-  margin: 0 auto;
+  gap: 10px;
+  margin-right: 8px;
   color: black;
 
 }
@@ -24,4 +25,17 @@
 .card-body {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.wrapper {
+  scroll-snap-type: x mandatory;
+  max-height: 400px;
+  display:flex;
+  overflow-x: scroll;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 0px;
 }
