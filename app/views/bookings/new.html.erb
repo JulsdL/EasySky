@@ -1,20 +1,20 @@
 <div class="container-fluid">
   <div class="container">
-    <h2 CLASS="text-shadow" Style="font-size: 3rem">RESERVATION</h2>
+    <h2 class="text-shadow mt-3" Style="font-size: 3rem">RESERVATION</h2>
   </div>
   <div class="container">
     <div class="container text-center">
       <p>Sélectionnez les dates qui vous intéressent</p>
     </div>
-    <div class="reservation-card px-4 py-4 mb-4">
+    <div class="reservation-card col-lg-8 p-4 mx-auto">
       <%= simple_form_for @booking do |f|%>
         <%= f.input :date, as: :string,
           wrapper_html: {class: "mb-4"},
           input_html: {data: {controller: "flatpickr"}}
         %>
-        <%= f.input :street %>
-        <%= f.input :city %>
-        <%= f.input :zip %>
+        <%= f.input :street, label: "Rue" %>
+        <%= f.input :city, label: "Ville"%>
+        <%= f.input :zip, label: "NPA" %>
         <div class= "mb-2">
           <p>Sélectionnez les options qui vous intéressent</p>
           <%= f.collection_check_boxes :item_ids, @items, :id, :name do |b| %>

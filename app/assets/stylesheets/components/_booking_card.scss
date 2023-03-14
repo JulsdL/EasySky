@@ -1,6 +1,6 @@
 .card-booking {
   overflow: hidden;
-  background: white;
+  background: linear-gradient(90deg, #ffffff, #e7e4e4);
   border-radius:10px;
   box-shadow:8px 8px 12px rgba(170, 170, 170, 0.6);
   display: flex;
@@ -26,9 +26,8 @@
 }
 
 .card-booking-status {
-  background-color: white;
-  color: black;
-  padding-left: 10px;
-  padding-right: 10px;
+  background-color: #052c51;
+  color: white;
+  padding: 10px;
   border-radius: 5px;
 }
