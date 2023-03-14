@@ -1,6 +1,5 @@
 require "json"
 require "httparty"
-require "time"
 require "tzinfo"
 
 class ObservationPlanning < ApplicationRecord
@@ -117,13 +116,14 @@ class ObservationPlanning < ApplicationRecord
     json = JSON.parse(response.body)
 
     unformated_rise = Time.parse(json['results']['nautical_twilight_begin'])
-    sunrise = (unformated_rise + utc_offset.hours).strftime('%H:%M')
+    sunrise = (unformated_rise + (utc_offset.hours + 1.hours)).strftime('%H:%M')
     unformated_set = Time.parse(json['results']['nautical_twilight_end'])
-    sunset = (unformated_set + utc_offset.hours).strftime('%H:%M')
+    sunset = (unformated_set + (utc_offset.hours + 1.hours)).strftime('%H:%M')
 
     self.sunrise = sunrise
     self.sunset = sunset
   end
+
 
   # call the api to get the moon phase for the date of the observation and rise/set time for user location
   def moon(date)
