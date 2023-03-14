@@ -11,9 +11,10 @@
                 autofocus: true,
                 input_html: { autocomplete: "email", style: 'color: white' } %>
           <%= f.input :password,
+                label: "Mot de passe",
                 required: false,
                 input_html: { autocomplete: "current-password", style: 'color: white' } %>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          <%= f.input :remember_me, label: "Se souvenir de moi", as: :boolean if devise_mapping.rememberable? %>
         </div>
         <div class="form-actions">
           <%= f.button :submit, "Se connecter!", class: "btn-straight" %>
