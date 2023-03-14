@@ -41,7 +41,7 @@
           </div>
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-solid fa-arrow-up px-1" ></i>
-            <><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</>
+            <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-regular fa-compass px-1"></i>
