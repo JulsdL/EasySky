@@ -31,7 +31,7 @@ count = 0
 data.each do |celestial_body|
   messier = CelestialBody.create(
     name: celestial_body['messier'],
-    description: "#{celestial_body['objet']} - Constellation: #{celestial_body['constellation']} - #{celestial_body['description']}",
+    description: "#{celestial_body['objet']} - Const.: #{celestial_body['constellation']} - #{celestial_body['description']}",
     ra: celestial_body['ra'],
     dec: celestial_body['dec']
   )

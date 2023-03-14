@@ -2,14 +2,11 @@
 <div class="container-fluid">
   <div class="container mt-2 mb-2" style="">
     <h2 class="text-shadow" style="color: white; font-size: 3rem">DÉCOUVERTES</h2>
-    <p style="color:white; text-align: justify; text-justify: inter-character"> Observez le ciel en couleur et découvrez les secrets de l'univers
-      depuis chez vous. Galaxies, nébuleuses, planètes, nos télescopes vous permettent
-      d'observer le ciel en couleur!
+    <p style="color:white; text-align: justify; text-justify: inter-character"> Observez le ciel en couleur avec nos télescopes et découvrez les galaxies, nébuleuses et planètes
+      depuis chez vous.
     </p>
   </div>
-
-
-    <div class="wrapper">
+  <div class="wrapper">
     <% @celestial_bodies.shuffle.take(8).each do |celestial_body| %>
       <div class="celestial-card">
         <div class="celestial-card-img">
@@ -17,19 +14,17 @@
         </div>
         <div class="card-body">
           <h3 class="card-title" style="text-align: left"><strong><%= celestial_body.name %></strong></h3>
-          <p class="card-text">Description: <%= celestial_body.description %></p>
+          <p class="card-text"><%= celestial_body.description %></p>
           <%# <%= link_to "En savoir plus","#", class:"btn-straight"%>
         </div>
       </div>
       <br>
     <% end %>
+  </div>
+  <div class="container mt-2 pb-4">
+    <p style="color:white; text-align: justify; text-justify: inter-character"> Vous souhaitez organiser une soirée mémorable? Entre amis, en famille ou en amoureux, réservez un téléscope!</p>
+    <div class="row justify-content-center mb-4" style="text-align: center">
+      <%= link_to "Réserver", new_booking_path ,class:"col-4 btn-straight" %>
     </div>
-
-
-    <div class="container mt-2 pb-4">
-      <p style="color:white; text-align: justify; text-justify: inter-character"> Vous souhaitez organiser une soirée mémorable? Entre amis, en famille ou en amoureux, réservez un téléscope!</p>
-      <div class="row justify-content-center mb-4" style="text-align: center">
-        <%= link_to "Réserver", new_booking_path ,class:"col-4 btn-straight" %>
-      </div>
-    </div>
+  </div>
 </div>
