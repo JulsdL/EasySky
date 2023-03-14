@@ -28,6 +28,9 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def paiement
+    @observation_planning = current_user.observation_plannings.last
+  end
 
   private
 
