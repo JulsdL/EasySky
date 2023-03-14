@@ -1,4 +1,4 @@
-<div class= "container fluid">
+<div class= "container-fluid">
   <div class="titre m-3" >
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
     <h3 class="text-shadow" style="font-size: 1.5rem"><%= "De #{@observation_planning.start_time.strftime("%H:%M")} à #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
@@ -6,41 +6,42 @@
   <div class="sunmoon col-12 d-flex flex-row justify-content-center  mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
     <div class = "col-6 m-1 col-lg-5">
-    <%= image_tag "moonphasels.png", class:'sunmoonimg' %>
+      <%= image_tag "moonphasels.png", class:'sunmoonimg' %>
     </div>
     <div class = "col-6 m-1 col-lg-5">
-    <%= image_tag "sunriseset.png", class:'sunmoonimg' %>
+      <%= image_tag "sunriseset.png", class:'sunmoonimg' %>
     </div>
   </div>
   <h2> Proposition d'objets célestes à observer</h2>
   <%# Display all the celestial bodies of the observation planning%>
   <% heure_observation = @observation_planning.start_time %>
-  <%# raise %>
   <% @observation_planning.celestial_bodies.each do |celestial_body| %>
-    <div class="observation-plan-card col-12 d-flex flex-row mb-4 mx-auto">
+    <div class="observation-plan-card col-12 col-lg-8 d-flex flex-row mb-4 mx-auto">
       <div class= "col-4 col-lg-4" style="position:relative">
         <%= cl_image_tag celestial_body.photo.key, class:"image"%>
         <h3><%= "#{celestial_body.name}" %></h3>
       </div>
-      <div class="observation-plan-card-infos col-6 col-lg-6 py-2 ">
+      <div class="observation-plan-card-infos col-6 col-lg-4 py-2 ">
         <div class="texte px-1">
           <p><strong>Observer à :</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
-          <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
           <div class="d-flex flex-row  align-items-center">
-          <i class="fa-solid fa-arrow-up px-1" ></i>
-          <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
-        </div>
+            <%= image_tag "azimuth.png",  width:'30', height:'30'%>
+            <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
+          </div>
+          <div class="d-flex flex-row  align-items-center">
+            <i class="fa-solid fa-arrow-up px-1" ></i>
+            <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
+          </div>
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-regular fa-compass px-1"></i>
             <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
           </div>
         </div>
-        <%#<button class="btn-straight mt-1 mx-auto">Pointer le télescope vers <%= "#{celestial_body.name}" ></button%>
       </div>
       <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
         <%= image_tag "target.png",  width:'30', height:'30'%>
       </div>
-      <% heure_observation += 15.minutes %>
     </div>
+    <% heure_observation += 15.minutes %>
   <% end %>
 </div>
