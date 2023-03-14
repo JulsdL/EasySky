@@ -27,7 +27,7 @@
             <input type="" class="form-control" placeholder="CVV">
           </div>
         </div>
-        <button data-controller="sweetalert" data-action="click->sweetalert#validation:prevent" class="btn-straight mt-3">Confirmer le paiement!</button>
+        <button data-controller="sweetalert" data-action="click->sweetalert#validation:prevent" data-sweetalert-id-value="<%= @booking.id %>" class="btn-straight mt-3">Confirmer le paiement!</button>
         <%# link_to "Confirmer le paiement", mes_reservations_path, class: "btn-straight mt-3"%>
       </form>
     </div>

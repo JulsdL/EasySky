@@ -3,20 +3,23 @@ import swal from 'sweetalert';
 
 // Connects to data-controller="sweetalert"
 export default class extends Controller {
+  static values = {
+    id: Number
+  }
   validation() {
     swal({
       title: "Merci!",
-      text: "Votre paiement à bien été accepté",
+      text: `Votre paiement pour la commande n° ${this.idValue} à bien été accepté`,
       icon: "success",
-      buttons: ['réservation', 'planning soirée']
+      buttons: ['réservation', 'mes plannings de soirée']
     }).then((value) => {
       switch (value) {
         case true:
-          window.location.href = '/';
+          window.location.href = '/observation_plannings';
           break;
 
         default:
-          console.log('go reservation')
+          window.location.href = '/mes-réservations';
           break;
       }
     });
