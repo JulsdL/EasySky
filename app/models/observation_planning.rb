@@ -1,4 +1,7 @@
 require "json"
+require "httparty"
+require "time"
+
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
   has_many :targets
@@ -19,7 +22,7 @@ class ObservationPlanning < ApplicationRecord
 
   # Retourne le décalage horaire en heure entre l'heure locale et l'heure UTC pour la position de l'observateur
   def utc_offset
-    -1
+    1
   end
 
   # Find astronomical objects visible above the horizon from the observer's location at a given time
@@ -67,7 +70,7 @@ class ObservationPlanning < ApplicationRecord
     return ra, dec
   end
 
-    # Calculate object's altitude and azimuth at a given time and location
+  # Calculate object's altitude and azimuth at a given time and location
   def calculate_altitude_and_azimuth(ra, dec, lst, observer_latitude, _observer_longitude)
     object_altitude = Math.asin((Math.sin(dec * Math::PI / 180) * Math.sin(observer_latitude * Math::PI / 180)) + (Math.cos(dec * Math::PI / 180) * Math.cos(observer_latitude * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
     object_azimuth = Math.atan2(-Math.sin((lst - ra) * Math::PI / 180), (Math.tan(observer_latitude * Math::PI / 180) * Math.cos(dec * Math::PI / 180)) - (Math.sin(dec * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
@@ -82,5 +85,61 @@ class ObservationPlanning < ApplicationRecord
   def hms_to_decimal(hours, minutes, seconds)
     decimal = hours + (minutes / 60.0) + (seconds / 3600.0)
     return decimal
+  end
+
+  # call api to get sunrise and sunset infos for the latitude and longitude of User
+  # and the date of the observation
+  # date in format YYYY-MM-DD
+  def sun(date)
+    latitude = user.latitude
+    longitude = user.longitude
+    api_url = "https://api.sunrise-sunset.org/json?lat=#{latitude}&lng=#{longitude}&date=#{date}"
+
+    response = HTTParty.get(api_url)
+    json = JSON.parse(response.body)
+
+    unformated_rise = Time.parse(json['results']['nautical_twilight_begin'])
+    sunrise = (unformated_rise + utc_offset.hours).strftime('%H:%M')
+    unformated_set = Time.parse(json['results']['nautical_twilight_end'])
+    sunset = (unformated_set + utc_offset.hours).strftime('%H:%M')
+
+    self.sunrise = sunrise
+    self.sunset = sunset
+  end
+
+  # call the api to get the moon phase for the date of the observation and rise/set time for user location
+  def moon(date)
+    application_id = '680ddb64-a69a-49e0-b03e-36b96b212227'
+    application_secret = 'b847e997f20db4ddf0a840643c139a9e0145ba6e2c81888e27643657f7cde0132c1a11c79858fcd6611091705821e6058d8090656f992ce31bd29f2edd05416d6ff1e3405d89c1b12106db4b96c8dcd62fd37ab2eeb13ea47b82b2892d24c3ea185abd9aa1d7d7eeb0b82936c2e3a147'
+
+    credentials = "#{application_id}:#{application_secret}"
+    hash = Base64.strict_encode64(credentials)
+
+    headers = {
+      'Authorization' => "Basic #{hash}",
+      'Content-Type' => 'application/json'
+    }
+    body = {
+      format: 'svg',
+      style: {
+        moonStyle: 'default',
+        backgroundStyle: 'stars',
+        backgroundColor: 'black',
+        headingColor: 'white',
+        textColor: 'white'
+      },
+      observer: {
+        latitude: user.latitude,
+        longitude: user.longitude,
+        date: date
+      },
+      view: {
+        type: 'landscape-simple',
+        orientation: 'north-up'
+      }
+    }
+    response = HTTParty.post('https://api.astronomyapi.com/api/v2/studio/moon-phase', headers: headers, body: body.to_json)
+    moon_phase_url = JSON.parse(response.body)['data']['imageUrl']
+    self.moon_phase = moon_phase_url
   end
 end

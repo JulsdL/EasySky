@@ -8,7 +8,10 @@
     </div>
     <div class="observation-plan-card px-4 py-4 mb-4">
       <%= simple_form_for @booking do |f|%>
-        <%= f.input :date, as: :date, html5: true %>
+        <%= f.input :date, as: :string,
+          wrapper_html: {class: "mb-4"},
+          input_html: {data: {controller: "flatpickr"}}
+        %>
         <%= f.input :street %>
         <%= f.input :city %>
         <%= f.input :zip %>
