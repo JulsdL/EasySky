@@ -51,12 +51,13 @@ class ObservationPlanning < ApplicationRecord
       ra, dec = parse_ra_and_dec(object) # Extract right ascension and declination from object data
       altitude, azimuth = calculate_altitude_and_azimuth(ra, dec, lst, observer_latitude, observer_longitude) # Calculate altitude and azimuth of object at start of observation
 
-      if altitude > 10 # If the object is above the horizon, add it to the selected_objects array with its altitude and azimuth
+      if altitude > 20 # If the object is above the horizon, add it to the selected_objects array with its altitude and azimuth
         selected_objects << object.merge(altitude: altitude, azimuth: azimuth)
       end
     end
+    sorted_objects = selected_objects.sort_by { |obj| -obj[:altitude] }
     # Retourne un array des objets visible trié par ordre décroissant de leur altitude
-    return selected_objects.sort_by! { |obj| -obj[:altitude] } # Return the array of visible objects
+    return sorted_objects # Return the array of visible objects
   end
 
   # Calculate the local sidereal time at a given location and time
@@ -75,7 +76,7 @@ class ObservationPlanning < ApplicationRecord
   # Convert right ascension and declination from hours/degrees, minutes, and seconds to decimal degrees
   def parse_ra_and_dec(object)
     ra_hours, ra_minutes, ra_seconds = object['ra'].split(':').map(&:to_f) # Split right ascension into hours, minutes, and seconds
-    ra = hms_to_decimal(ra_hours, ra_minutes, ra_seconds) # Convert right ascension to decimal hours
+    ra = (hms_to_decimal(ra_hours, ra_minutes, ra_seconds) * 360) / 24 # Convert right ascension to decimal degrees
     dec_degrees, dec_minutes, dec_seconds = object['dec'].split(':').map(&:to_f) # Split declination into degrees, minutes, and seconds
     dec = dec_degrees + (dec_minutes / 60.0) + (dec_seconds / 3600.0) # Convert declination to decimal degrees
 
@@ -84,8 +85,13 @@ class ObservationPlanning < ApplicationRecord
 
   # Calculate object's altitude and azimuth at a given time and location
   def calculate_altitude_and_azimuth(ra, dec, lst, observer_latitude, _observer_longitude)
-    object_altitude = Math.asin((Math.sin(dec * Math::PI / 180) * Math.sin(observer_latitude * Math::PI / 180)) + (Math.cos(dec * Math::PI / 180) * Math.cos(observer_latitude * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
-    object_azimuth = Math.atan2(-Math.sin((lst - ra) * Math::PI / 180), (Math.tan(observer_latitude * Math::PI / 180) * Math.cos(dec * Math::PI / 180)) - (Math.sin(dec * Math::PI / 180) * Math.cos((lst - ra) * Math::PI / 180)))
+    ra_rad = ra * Math::PI / 180
+    dec_rad = dec * Math::PI / 180
+    lst_rad = lst * Math::PI / 180
+    observer_latitude_rad = observer_latitude * Math::PI / 180
+
+    object_altitude = Math.asin((Math.sin(dec_rad) * Math.sin(observer_latitude_rad)) + (Math.cos(dec_rad) * Math.cos(observer_latitude_rad) * Math.cos(lst_rad - ra_rad)))
+    object_azimuth = Math.atan2(-Math.sin(lst_rad - ra_rad), (Math.tan(observer_latitude_rad) * Math.cos(dec_rad)) - (Math.sin(dec_rad) * Math.cos(lst_rad - ra_rad)))
 
     azimuth = ((object_azimuth * 180 / Math::PI) + 360) % 360 # Convert azimuth from radians to degrees
     altitude = object_altitude * 180 / Math::PI # Convert altitude from radians to degrees
