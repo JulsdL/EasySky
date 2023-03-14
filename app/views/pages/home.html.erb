@@ -12,15 +12,14 @@
     </section>
 
     <div class="row justify-content-center" style="text-align: center">
-      <div class="col">
-        <%= link_to "Découvrir", objects_path, class:"col-3 btn-straight" %>
+      <div class="col-md-6 offset-md-3 border">
+        <%= link_to "Réserver", new_booking_path, class:"btn-straight", style:"padding-right: 50px; padding-left: 50px; font-size: 1.5rem" %>
       </div>
-      <div class="col">
-        <%= link_to "Réserver", new_booking_path ,class:"col-3 btn-straight" %>
-      </div>
-
     </div>
 
+    <div class="row justify-content-center" style="text-align: center">
+        <%= link_to "Découvrir", objects_path, style:"color: white"%>
+      </div>
   </div>
   <div class="home-info">
     <div class="home-info-section">
