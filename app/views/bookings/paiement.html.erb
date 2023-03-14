@@ -1,4 +1,4 @@
-<div class= "container">
+<div class= "container-fluid">
   <div class="m-3">
     <h2 class="text-shadow" style="font-size: 3rem"> PAIEMENT </h2>
   </div>
@@ -27,7 +27,7 @@
             <input type="" class="form-control" placeholder="CVV">
           </div>
         </div>
-        <%= link_to "Confirmer le paiement", mes_reservations_path, class: "btn-straight mt-3"%>
+        <button data-controller="sweetalert" data-action="click->sweetalert#validation:prevent" data-sweetalert-id-value="<%= @observation_planning.id %>" class="btn-straight mt-3">Confirmer le paiement!</button>
       </form>
     </div>
   </div>

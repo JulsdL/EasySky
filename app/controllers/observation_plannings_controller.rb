@@ -1,6 +1,6 @@
 class ObservationPlanningsController < ApplicationController
   def index
-    @observation_plannings = current_user.observation_plannings
+    @observation_plannings = current_user.observation_plannings.sort_by(&:start_time)
   end
 
   def show
