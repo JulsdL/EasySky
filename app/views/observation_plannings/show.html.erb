@@ -1,16 +1,26 @@
 <div class= "container-fluid">
   <div class="titre m-3" >
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
-    <h3 class="text-shadow" style="font-size: 1.5rem"><%= "De #{@observation_planning.start_time.strftime("%H:%M")} à #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
+    <h3 class="text-shadow" style="font-size: 1.5rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
   </div>
   <div class="sunmoon col-12 d-flex flex-row justify-content-center  mb-3">
     <%#display the image moonphasels.png in the folder db/images/sunmoon/%>
     <div class = "col-6 m-1 col-lg-5">
-      <%= image_tag "moonphasels.png", class:'sunmoonimg' %>
+      <img src="<%= @observation_planning.moon_phase %>" alt="Phase de la lune" class="sunmoonimg">
     </div>
     <div class = "col-6 m-1 col-lg-5">
-      <%= image_tag "sunriseset.png", class:'sunmoonimg' %>
-      <p> Lever: <%= @observation_planning.sunrise %> Coucher: <%= @observation_planning.sunset%> </p>
+      <div class = "sun-card d-flex flex-row">
+        <div class="col-6">
+          <%= image_tag"Sun.png"%>
+        </div>
+        <div class="col-6">
+          <h4>Soleil</h4>
+          <div class ="mt-3">
+            <p>Lever: <%= @observation_planning.sunrise %></p>
+            <p>Coucher: <%= @observation_planning.sunset%> </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <h2> Proposition d'objets célestes à observer</h2>
@@ -26,7 +36,7 @@
         <div class="texte px-1">
           <p><strong>Observer à :</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
           <div class="d-flex flex-row  align-items-center">
-            <%= image_tag "azimuth.png",  width:'30', height:'30'%>
+            <%= image_tag "azimuth.png",  width:'20', height:'20'%>
             <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
@@ -40,7 +50,7 @@
         </div>
       </div>
       <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
-        <%= image_tag "target.png",  width:'30', height:'30'%>
+        <%= image_tag "target.png",  width:'25', height:'25'%>
       </div>
     </div>
     <% heure_observation += 15.minutes %>

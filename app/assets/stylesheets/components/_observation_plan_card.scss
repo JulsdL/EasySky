@@ -1,3 +1,19 @@
+body {
+  font-size: 100%
+}
+
+@media screen and (max-width: 30em){
+  p {
+    font-size: 0.60em !important;
+  }
+
+  h3 {
+    font-size: 1em !important;
+  }
+
+
+}
+
 .observation-plan-card {
     overflow: hidden;
     background: white;
@@ -17,7 +33,7 @@
 
   h3 {
     padding-top: 10px;
-    font-size:18px ;
+    font-size:32px ;
     padding-left: 12px;
     font-weight: bold;
     margin: 0;
@@ -31,7 +47,7 @@
 .observation-plan-card .observation-plan-card-infos {
   max-height: 170px;
   p {
-    font-size: 16px;
+    font-size: 18px;
     padding: 5px;
     margin: 0px;
   }
@@ -43,7 +59,7 @@
   }
 
   i {
-    font-size: 18px;
+    font-size: 14px;
   }
 
 }
