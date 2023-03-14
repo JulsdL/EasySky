@@ -3,7 +3,7 @@ body {
 }
 
 @media screen and (max-width: 64em) {
-    p {
+    .sun-card p {
       font-size: 2.5em;
     }
   }
@@ -11,17 +11,17 @@ body {
 
 
 @media screen and (max-width: 60em) {
-    p {
+    .sun-card p {
       font-size: 2em;
     }
   }
 
   @media screen and (max-width: 30em){
-    p {
+    .sun-card p {
       font-size: 0.60em !important;
     }
 
-    h4 {
+    .sun-card h4 {
       font-size: 0.8em !important;
     }
   }
