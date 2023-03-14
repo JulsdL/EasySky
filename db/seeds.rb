@@ -31,7 +31,7 @@ count = 0
 data.each do |celestial_body|
   messier = CelestialBody.create(
     name: celestial_body['messier'],
-    description: "Type: #{celestial_body['objet']} - Constellation: #{celestial_body['french_name_nom_francais']} - #{celestial_body['ngc']} - Distance: #{celestial_body['distance']} années lumières",
+    description: "#{celestial_body['objet']} - Constellation: #{celestial_body['constellation']} - #{celestial_body['description']}",
     ra: celestial_body['ra'],
     dec: celestial_body['dec']
   )
@@ -214,46 +214,46 @@ puts "Finished creating bookings"
 
 # Creating 4 plannings
 
-planning = ObservationPlanning.new(
-  name: "Plan d'observation du 07/03/2022",
-  start_time: Time.new(2022, 03, 07, 21, 00, 00),
-  end_time: Time.new(2022, 03, 07, 23, 30, 00),
-  user_id: User.all.sample.id
-)
-planning.save!
-count += 1
-puts "#{count}: Created #{planning.name}"
+# planning = ObservationPlanning.new(
+#   name: "Plan d'observation du 07/03/2022",
+#   start_time: Time.new(2022, 03, 07, 21, 00, 00),
+#   end_time: Time.new(2022, 03, 07, 23, 30, 00),
+#   user_id: User.all.sample.id
+# )
+# planning.save!
+# count += 1
+# puts "#{count}: Created #{planning.name}"
 
-planning = ObservationPlanning.new(
-  name: "Plan d'observation du 23.03.2022",
-  start_time: Time.new(2022, 03, 23, 21, 30, 00),
-  end_time: Time.new(2022, 03, 23, 23, 30, 00),
-  user_id: User.all.sample.id
-)
-planning.save!
-count += 1
-puts "#{count}: Created #{planning.name}"
+# planning = ObservationPlanning.new(
+#   name: "Plan d'observation du 23.03.2022",
+#   start_time: Time.new(2022, 03, 23, 21, 30, 00),
+#   end_time: Time.new(2022, 03, 23, 23, 30, 00),
+#   user_id: User.all.sample.id
+# )
+# planning.save!
+# count += 1
+# puts "#{count}: Created #{planning.name}"
 
-planning = ObservationPlanning.new(
-  name: "Plan d'observation du 10.04.2022",
-  start_time: Time.new(2022, 04, 10, 21, 00, 00),
-  end_time: Time.new(2022, 04, 10 , 23, 30, 00),
-  user_id: User.all.sample.id
-)
-planning.save!
-count += 1
-puts "#{count}: Created #{planning.name}"
+# planning = ObservationPlanning.new(
+#   name: "Plan d'observation du 10.04.2022",
+#   start_time: Time.new(2022, 04, 10, 21, 00, 00),
+#   end_time: Time.new(2022, 04, 10 , 23, 30, 00),
+#   user_id: User.all.sample.id
+# )
+# planning.save!
+# count += 1
+# puts "#{count}: Created #{planning.name}"
 
-planning = ObservationPlanning.new(
-  name: "Plan d'observation du 12.04.2022",
-  start_time: Time.new(2022, 04, 12, 21, 00, 00),
-  end_time: Time.new(2022, 04, 12, 23, 15, 00),
-  user_id: User.all.sample.id
-)
-planning.save!
-count += 1
-puts "#{count}: Created #{planning.name}"
+# planning = ObservationPlanning.new(
+#   name: "Plan d'observation du 12.04.2022",
+#   start_time: Time.new(2022, 04, 12, 21, 00, 00),
+#   end_time: Time.new(2022, 04, 12, 23, 15, 00),
+#   user_id: User.all.sample.id
+# )
+# planning.save!
+# count += 1
+# puts "#{count}: Created #{planning.name}"
 
-puts "Finished creating observation"
+# puts "Finished creating observation"
 
-puts "Finished !"
+puts "Finished seeding!"
