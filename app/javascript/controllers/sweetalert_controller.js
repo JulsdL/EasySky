@@ -11,7 +11,7 @@ export default class extends Controller {
       title: "Merci!",
       text: `Votre paiement a bien été accepté`,
       icon: "success",
-      buttons: ["réservations", "plan d'observation"]
+      buttons: ["Réservations", "Plan d'observation"]
     }).then((value) => {
       switch (value) {
         case true:
