@@ -9,13 +9,13 @@ export default class extends Controller {
   validation() {
     swal({
       title: "Merci!",
-      text: `Votre paiement pour la commande n° ${this.idValue} à bien été accepté`,
+      text: `Votre paiement a bien été accepté`,
       icon: "success",
-      buttons: ['réservation', 'mes plannings de soirée']
+      buttons: ["réservations", "plan d'observation"]
     }).then((value) => {
       switch (value) {
         case true:
-          window.location.href = '/observation_plannings';
+          window.location.href = `/observation_plannings/${this.idValue}`;
           break;
 
         default:
