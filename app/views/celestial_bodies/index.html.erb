@@ -1,14 +1,15 @@
 <%# display 8 random celestial bodies from the database, with name, image, description%>
 <div class="container-fluid">
-  <div class="container">
+  <div class="container mt-2 mb-2" style="">
     <h2 class="text-shadow" style="color: white; font-size: 3rem">DÉCOUVERTES</h2>
-    <p style="color:white"> Observez les astres qui vous entourent et découvrez les secrets de l'univers
+    <p style="color:white; text-align: justify; text-justify: inter-character"> Observez le ciel en couleur et découvrez les secrets de l'univers
       depuis chez vous. Galaxies, nébuleuses, planètes, nos télescopes vous permettent
-      d'observer le ciel en couleur, même depuis la ville.
-      Aucune connaissance préalable requise, le télescope s'occupe de tout!
+      d'observer le ciel en couleur!
     </p>
   </div>
-  <div class="container mt-3">
+
+
+    <div class="wrapper">
     <% @celestial_bodies.shuffle.take(8).each do |celestial_body| %>
       <div class="celestial-card">
         <div class="celestial-card-img">
@@ -22,14 +23,13 @@
       </div>
       <br>
     <% end %>
-    <div class="container mt-4 pb-4">
-      <p style="color: white"> Vous souhaitez organiser une soirée mémorable? Entre amis, en famille ou en amoureux,
-        nous vous proposons des soirées astronomiques sur mesure.</p>
-      <p style="color: white">Réservez votre télescope et découvrez le ciel depuis chez vous!</p>
-      <br>
-      <div class="row justify-content-center" style="text-align: center">
+    </div>
+
+
+    <div class="container mt-2 pb-4">
+      <p style="color:white; text-align: justify; text-justify: inter-character"> Vous souhaitez organiser une soirée mémorable? Entre amis, en famille ou en amoureux, réservez un téléscope!</p>
+      <div class="row justify-content-center mb-4" style="text-align: center">
         <%= link_to "Réserver", new_booking_path ,class:"col-4 btn-straight" %>
       </div>
     </div>
-  </div>
 </div>
