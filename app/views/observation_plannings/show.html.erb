@@ -34,7 +34,10 @@
       </div>
       <div class="observation-plan-card-infos col-6 col-lg-4 py-2" data-target="observation.description">
         <div class="texte px-1">
-          <p><strong>Observer à :</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
+          <div class="d-flex flex-row  align-items-center">
+            <i class="fa-regular fa-eye"></i>
+            <p><strong>Observer à :</strong> <%= "#{(heure_observation + 15.minutes).strftime("%H:%M")}" %></p>
+          </div>
           <div class="d-flex flex-row  align-items-center">
             <%= image_tag "azimuth.png",  width:'20', height:'20'%>
             <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
