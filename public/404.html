@@ -7,30 +7,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
-    background-image: url("https://wallpaperaccess.com/full/676729.jpg");
-    background-size: auto;
-    background-position: center;
-    background-blend-mode: revert;
-    background-size: cover;
+    background-image: url("error.png");
+    background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
     color: #2E2F30;
     text-align: center;
     font-family: arial, sans-serif;
     margin: 0;
+    height: 100vh;
+    width: auto;
 }
-
-body {
-  min-height: 100vh;
-  background-image: asset-url('star_sky.png'), linear-gradient(#000000, #092536);
-  background-blend-mode: revert;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  color: white;
-}
-
-
   .rails-default-error-page div.dialog {
     width: 95%;
     max-width: 80em;
@@ -46,11 +33,9 @@ body {
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <img src="../app/assets/images/error.png" alt="Page non trouvée">
+<body>
   <!-- This file lives in public/404.html -->
-  <!-- <div class="dialog">
-    <h1>Oops vous êtes tombés dans un trou noir...</h1> -->
+  <div class="rails-default-error-page">
   </div>
 </body>
 </html>
