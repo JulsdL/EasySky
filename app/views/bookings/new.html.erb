@@ -1,33 +1,35 @@
-<div class="container-fluid">
-  <div class="container">
-    <h2 class="text-shadow mt-3" Style="font-size: 3rem">RESERVATION</h2>
-  </div>
-  <div class="container">
-    <div class="container text-center">
-      <p>Sélectionnez les dates qui vous intéressent</p>
+<div class="container-fluid" data-controller="loading" data-action="submit->loading#launchAnimation">
+  <div data-loading-target="page">
+    <div class="container">
+      <h2 class="text-shadow mt-3" Style="font-size: 3rem">RESERVATION</h2>
     </div>
-    <div class="reservation-card col-lg-8 p-4 mx-auto">
-      <%= simple_form_for @booking do |f|%>
-        <%= f.input :date, as: :string,
+    <div class="container">
+      <div class="container text-center">
+        <p>Sélectionnez les dates qui vous intéressent</p>
+      </div>
+      <div class="reservation-card col-lg-8 p-4 mx-auto">
+        <%= simple_form_for @booking do |f|%>
+          <%= f.input :date, as: :string,
           wrapper_html: {class: "mb-4"},
           input_html: {data: {controller: "flatpickr"}}
         %>
-        <%= f.input :street, label: "Rue" %>
-        <%= f.input :city, label: "Ville"%>
-        <%= f.input :zip, label: "NPA" %>
-        <div class= "mb-2">
-          <p>Sélectionnez les options qui vous intéressent</p>
-          <%= f.collection_check_boxes :item_ids, @items, :id, :name do |b| %>
-            <div>
-              <%= b.check_box %>
-              <%= b.label %>
-            </div>
-          <% end %>
-        </div>
-        <div class="container mb-4">
-          <%= f.submit :Suivant, class: 'btn-straight'%>
-        </div>
-      <% end %>
+          <%= f.input :street, label: "Rue" %>
+          <%= f.input :city, label: "Ville"%>
+          <%= f.input :zip, label: "NPA" %>
+          <div class= "mb-2">
+            <p>Sélectionnez les options qui vous intéressent</p>
+            <%= f.collection_check_boxes :item_ids, @items, :id, :name do |b| %>
+              <div>
+                <%= b.check_box %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
+          <div class="container mb-4">
+            <%= f.submit :Suivant, class: 'btn-straight'%>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
