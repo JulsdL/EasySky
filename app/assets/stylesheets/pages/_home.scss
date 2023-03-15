@@ -44,12 +44,12 @@ section {
   transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
-  background-image: asset-url('Moon_surface.png')  ;
+  background-image: asset-url('Moonmap.jpg')  ;
   background-size: cover;
   background-repeat: repeat-x;
   border-radius: 50%;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 1), 0 0 100px #4069ff ;
-  animation: animateMoon 100s linear infinite;
+  animation: animateMoon 120s linear infinite;
 }
 
 @keyframes animateMoon {

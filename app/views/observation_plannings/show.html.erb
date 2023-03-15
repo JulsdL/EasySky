@@ -1,4 +1,4 @@
-<div class= "container-fluid">
+<div class= "container-fluid" data-controller="observation">
   <div class="titre m-3" >
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
     <h3 class="text-shadow" style="font-size: 1.5rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
@@ -29,10 +29,10 @@
   <% @observation_planning.celestial_bodies.each do |celestial_body| %>
     <div class="observation-plan-card col-12 col-lg-8 d-flex flex-row mb-4 mx-auto">
       <div class= "col-4 col-lg-4" style="position:relative">
-        <%= cl_image_tag celestial_body.photo.key, class:"image"%>
+        <%= cl_image_tag celestial_body.photo.key, class:"image", data: { action: "click->observation#toggleDescription" }%>
         <h3><%= "#{celestial_body.name}" %></h3>
       </div>
-      <div class="observation-plan-card-infos col-6 col-lg-4 py-2 ">
+      <div class="observation-plan-card-infos col-6 col-lg-4 py-2" data-target="observation.description">
         <div class="texte px-1">
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-regular fa-eye"></i>
@@ -49,6 +49,9 @@
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-regular fa-compass px-1"></i>
             <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
+          </div>
+          <div class="description" data-observation-target="description">
+            <p><%= celestial_body.description %></p>
           </div>
         </div>
       </div>
