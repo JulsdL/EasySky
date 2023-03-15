@@ -23,15 +23,21 @@
 }
 
 .card-body {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  max-height: auto;
+  font-size: 0.8rem;
 }
 
 .wrapper {
   scroll-snap-type: x mandatory;
-  max-height: 400px;
+  max-height: auto;
   display:flex;
   overflow-x: scroll;
+  overflow-y: hidden;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -39,3 +45,5 @@
 .wrapper::-webkit-scrollbar {
   width: 0px;
 }
+
+#more {display: none;}
