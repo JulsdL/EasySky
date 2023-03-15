@@ -27,7 +27,10 @@
             <input type="" class="form-control" placeholder="CVV">
           </div>
         </div>
-        <button data-controller="sweetalert" data-action="click->sweetalert#validation:prevent" data-sweetalert-id-value="<%= @observation_planning.id %>" class="btn-straight mt-3">Confirmer le paiement</button>
+        <button data-controller="sweetalert" data-action="click->sweetalert#validation:prevent" data-sweetalert-id-value="<%= @observation_planning.id %>" class="btn-straight mt-3 mb-2">Confirmer le paiement</button>
+        <div class="row text-center">
+          <a href="#" style="color: black; font-size: 0.9rem">Retour</a>
+        </div>
       </form>
     </div>
   </div>

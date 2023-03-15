@@ -1,7 +1,7 @@
 <div class="container-fluid mt-5">
     <h1 class="text-shadow" style="font-size: 2rem">CONFIRMER LA RESERVATION</h1>
     <h3>Vérifiez les informations de réservation avant de procéder au paiement</h3>
-  <div class="checkout-card col-lg-10 mx-auto">
+  <div class="checkout-card col-md-10 mx-auto">
     <div class="row">
       <h2>Informations de facturation</h2>
       <div class="col-4">
@@ -38,8 +38,12 @@
         <p style="text-align: right"><strong>Total <%= @booking.price %> CHF</strong></p>
       </div>
     </div>
-    <div class="mb-4">
+    <div class="mb-2">
       <%= link_to "Procéder au paiement", paiement_path, class: "btn-straight"%>
     </div>
+    <div class="row text-center">
+      <a href="#" style="color: white; font-size: 1rem">Retour</a>
+    </div>
+
   </div>
   </div>
