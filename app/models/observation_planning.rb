@@ -1,6 +1,7 @@
 require "json"
 require "httparty"
 require "tzinfo"
+require "timezone"
 
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
@@ -23,10 +24,11 @@ class ObservationPlanning < ApplicationRecord
   # Retourne le décalage horaire en heure entre l'heure locale et l'heure UTC pour la position de l'observateur
   def utc_offset
     coordinates = [user.latitude, user.longitude]
-    timezone_result = Geocoder.search(coordinates, params: { result_type: :timezone }).first # Récupère le fuseau horaire basé sur les coordonnées
 
-    if timezone_result
-      tz = TZInfo::Timezone.get(timezone_result.data['timeZoneId'])
+    timezone = Timezone.lookup(*coordinates)
+
+    if timezone
+      tz = TZInfo::Timezone.get(timezone.name)
       offset_seconds = tz.current_period.utc_total_offset # Récupère l'offset en secondes
       offset_hours = offset_seconds / 3600.0 # Convertit les secondes en heures
     else
@@ -35,6 +37,7 @@ class ObservationPlanning < ApplicationRecord
 
     offset_hours
   end
+
 
   # Find astronomical objects visible above the horizon from the observer's location at a given time
   def visible_objects
