@@ -1,0 +1,16 @@
+.loader-container {
+  width: 350px;
+  height: 250px;
+  border-radius: 5px;
+  margin: 250px auto;
+  background-color: rgb(170, 163, 163);
+  background-image: url("animation/animation.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px;
+
+  p {
+    color: white;
+  }
+}
