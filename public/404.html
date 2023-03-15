@@ -7,35 +7,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
-    background-image: url("error.png");
+    background: black url("errormobile.png");
     background-size: contain;
+    background-blend-mode: revert;
     background-position: center center;
     background-repeat: no-repeat;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
     margin: 0;
-    height: 100vh;
-    width: auto;
+    height:100vh;
+    width:auto;
 }
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 80em;
-    margin: 2em auto 0;
-  }
-
-  .rails-default-error-page h1 {
-    font-size: 50px;
-    color: #dcdcdc;
-    line-height: 1.5em;
-  }
 
   </style>
 </head>
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="rails-default-error-page">
-  </div>
+<body class="rails-default-error-page">
+
 </body>
 </html>
