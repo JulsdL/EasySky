@@ -27,6 +27,11 @@
               <%= item.price%>
             <% end %>
             <p><strong>Prix total:</strong> CHF <%= booking.price%>.-</p>
+            <div class="row justify-content-center mt-3">
+              <a href="#" class="btn-straight mx-2">Modifier</a>
+              <a href="#" class="btn-straight mx-2">Annuler</a>
+            </div>
+
           </div>
           <%# <% if booking.status == "pending" %>
           <%#<%= link_to "Cancel booking", booking_path(booking), data: { "turbo-method": :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-primary" %>

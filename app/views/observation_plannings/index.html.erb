@@ -17,9 +17,20 @@
               </div>
             </p>
             <%# Display the link to show the observation planning details %>
-            <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "btn-straight m-auto text-center", style: "width:250px" %>
+            <div class="row justify-content-center">
+            <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "btn-straight px-2 mx-1", style: "height: 40px" %>
+            <a href="#" class="btn-straight px-2 mx-1" style="height: 40px">Modifier</a>
+            <a href="#" class="btn-straight px-2 mx-1" style="height: 40px">Supprimer</a>
+
+            </div>
+
+
           </div>
         <% end %>
+          <div class="row mt-4 mb-4">
+            <button class="btn-straight">Créer un nouveau planning</button>
+          </div>
+
       </div>
     </div>
   </div>
