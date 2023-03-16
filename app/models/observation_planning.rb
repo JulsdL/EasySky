@@ -10,6 +10,8 @@ class ObservationPlanning < ApplicationRecord
 
   has_many :celestial_bodies, through: :targets
 
+  serialize :visible_objects, JSON
+
   validates :name, presence: true
   validates_time :start_time, presence: true
   validates_time :end_time, after: :start_time, presence: true
@@ -43,7 +45,7 @@ class ObservationPlanning < ApplicationRecord
 
 
   # Find astronomical objects visible above the horizon from the observer's location at a given time
-  def visible_objects
+  def select_objects
     observer_latitude = user.latitude # Latitude of observer in decimal degrees
     observer_longitude = user.longitude # Longitude of observer in decimal degrees
     observation_start_utc = start_time - utc_offset.hours # Start time of observation in UTC
@@ -60,8 +62,11 @@ class ObservationPlanning < ApplicationRecord
         selected_objects << object.merge(altitude: altitude, azimuth: azimuth)
       end
     end
+    # Trie selected_objects par ordre décroissant de leur altitude
     sorted_objects = selected_objects.sort_by { |obj| -obj[:altitude] }
-    # Retourne un array des objets visible trié par ordre décroissant de leur altitude
+    # Sauvegarde les objets visibles dans la base de données
+    self.visible_objects = sorted_objects
+
     return sorted_objects # Return the array of visible objects
   end
 
