@@ -28,8 +28,8 @@
   <% heure_observation = @observation_planning.start_time %>
   <% @observation_planning.celestial_bodies.each do |celestial_body| %>
     <div class="observation-plan-card col-12 col-lg-8 d-flex flex-row mb-4 mx-auto">
-      <div class= "col-4 col-lg-4" style="position:relative">
-        <%= cl_image_tag celestial_body.photo.key, class:"image", data: { action: "click->observation#toggleDescription" }%>
+      <div class="col-4 col-lg-4" style="position:relative">
+        <%= cl_image_tag celestial_body.photo.key, class:"image"%>
         <h3><%= "#{celestial_body.name}" %></h3>
       </div>
       <div class="observation-plan-card-infos col-6 col-lg-4 py-2" data-target="observation.description">
@@ -43,7 +43,7 @@
             <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
-            <i class="fa-solid fa-arrow-up px-1" ></i>
+            <i class="fa-solid fa-arrow-up px-1"></i>
             <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
@@ -56,7 +56,10 @@
         </div>
       </div>
       <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
-        <%= image_tag "target.png",  width:'25', height:'25', data: { celestial_body_name: celestial_body.name, action: "click->pointage#pointTelescope", pointage_celestial_body_name: celestial_body.name } %>
+        <div class="col-2 d-flex flex-column">
+          <i class="fa-solid fa-circle-info px-1 mb-4" data-action="click->observation#toggleDescription"></i>
+          <%= image_tag "target.png",  width:'25', height:'25', data: { celestial_body_name: celestial_body.name, action: "click->pointage#pointTelescope", pointage_celestial_body_name: celestial_body.name } %>
+        </div>
       </div>
     </div>
     <% heure_observation += 15.minutes %>
