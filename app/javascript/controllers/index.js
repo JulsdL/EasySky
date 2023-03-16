@@ -16,5 +16,8 @@ application.register("loading", LoadingController)
 import ObservationController from "./observation_controller"
 application.register("observation", ObservationController)
 
+import PointageController from "./pointage_controller"
+application.register("pointage", PointageController)
+
 import SweetalertController from "./sweetalert_controller"
 application.register("sweetalert", SweetalertController)

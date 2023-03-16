@@ -1,4 +1,4 @@
-<div class= "container-fluid" data-controller="observation">
+<div class= "container-fluid" data-controller="observation pointage">
   <div class="titre m-3" >
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
     <h3 class="text-shadow" style="font-size: 1.5rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
@@ -57,8 +57,8 @@
       </div>
       <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
         <div class="col-2 d-flex flex-column">
-        <i class="fa-solid fa-circle-info px-1 mb-4" data-action="click->observation#toggleDescription"></i>
-        <%= image_tag "target.png",  width:'25', height:'25'%>
+          <i class="fa-solid fa-circle-info px-1 mb-4" data-action="click->observation#toggleDescription"></i>
+          <%= image_tag "target.png",  width:'25', height:'25', data: { celestial_body_name: celestial_body.name, action: "click->pointage#pointTelescope", pointage_celestial_body_name: celestial_body.name } %>
         </div>
       </div>
     </div>
