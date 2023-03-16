@@ -65,7 +65,7 @@ class ObservationPlanning < ApplicationRecord
     # Trie selected_objects par ordre décroissant de leur altitude
     sorted_objects = selected_objects.sort_by { |obj| -obj[:altitude] }
     # Sauvegarde les objets visibles dans la base de données
-    self.visible_objects = sorted_objects
+    self.visible_objects = sorted_objects.to_json
 
     return sorted_objects # Return the array of visible objects
   end
