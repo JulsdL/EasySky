@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="col-2 col-lg-2 d-flex align-items-center justify-content-center">
-        <%= image_tag "target.png",  width:'25', height:'25', data: { celestial_body_name: celestial_body.name, action: "click->pointage#pointTelescope" } %>
+        <%= image_tag "target.png",  width:'25', height:'25', data: { celestial_body_name: celestial_body.name, action: "click->pointage#pointTelescope", pointage_celestial_body_name: celestial_body.name } %>
       </div>
     </div>
     <% heure_observation += 15.minutes %>
