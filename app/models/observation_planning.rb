@@ -2,6 +2,7 @@ require "json"
 require "httparty"
 require "tzinfo"
 require "timezone"
+require "date"
 
 class ObservationPlanning < ApplicationRecord
   belongs_to :user
@@ -24,12 +25,14 @@ class ObservationPlanning < ApplicationRecord
   # Retourne le décalage horaire en heure entre l'heure locale et l'heure UTC pour la position de l'observateur
   def utc_offset
     coordinates = [user.latitude, user.longitude]
+    # find the user last booking date
+    date = user.bookings.last.date
 
     timezone = Timezone.lookup(*coordinates)
 
     if timezone
       tz = TZInfo::Timezone.get(timezone.name)
-      offset_seconds = tz.current_period.utc_total_offset # Récupère l'offset en secondes
+      offset_seconds = tz.period_for_local(date).utc_total_offset # Récupère l'offset en secondes
       offset_hours = offset_seconds / 3600.0 # Convertit les secondes en heures
     else
       offset_hours = 0 # Utilise UTC par défaut si le fuseau horaire ne peut pas être déterminé
@@ -118,14 +121,23 @@ class ObservationPlanning < ApplicationRecord
     response = HTTParty.get(api_url)
     json = JSON.parse(response.body)
 
-    unformated_rise = Time.parse(json['results']['nautical_twilight_begin'])
-    sunrise = (unformated_rise + (utc_offset.hours + 1.hours)).strftime('%H:%M')
-    unformated_set = Time.parse(json['results']['nautical_twilight_end'])
-    sunset = (unformated_set + (utc_offset.hours + 1.hours)).strftime('%H:%M')
+    unformated_rise = DateTime.strptime(json['results']['nautical_twilight_begin'], "%H:%M:%S").to_time.utc
+    local_sunrise = (unformated_rise + utc_offset.hours).strftime('%H:%M')
+    unformated_set = DateTime.strptime(json['results']['nautical_twilight_end'], "%H:%M:%S").to_time.utc
+    local_sunset = (unformated_set + utc_offset.hours).strftime('%H:%M')
 
-    self.sunrise = sunrise
-    self.sunset = sunset
+    if local_sunrise.to_i > 12
+      local_sunrise = (unformated_rise + utc_offset.hours - 12.hours).strftime('%H:%M')
+    end
+
+    if local_sunset.to_i < 12
+      local_sunset = (unformated_set + utc_offset.hours + 12.hours).strftime('%H:%M')
+    end
+
+    self.sunrise = local_sunrise
+    self.sunset = local_sunset
   end
+
 
 
   # call the api to get the moon phase for the date of the observation and rise/set time for user location
