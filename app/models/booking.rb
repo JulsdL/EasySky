@@ -19,6 +19,8 @@ class Booking < ApplicationRecord
     planning = ObservationPlanning.new
     # add the booking user_id to the observation planning
     planning.user_id = user_id
+    # add the booking location to the observation planning
+    planning.location = city
     # call the sun method from the observation planning model to get the sunries and sunset time
     planning.sun(date.strftime("%y-%m-%d"))
     # the booking date is the observation planning date and start time is 20:00 and end time is 22:00
