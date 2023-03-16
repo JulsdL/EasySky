@@ -124,11 +124,20 @@ class ObservationPlanning < ApplicationRecord
     unformated_rise = DateTime.strptime(json['results']['nautical_twilight_begin'], "%H:%M:%S").to_time.utc
     local_sunrise = (unformated_rise + utc_offset.hours).strftime('%H:%M')
     unformated_set = DateTime.strptime(json['results']['nautical_twilight_end'], "%H:%M:%S").to_time.utc
-    local_sunset = (unformated_set + utc_offset.hours + 12.hours).strftime('%H:%M')
+    local_sunset = (unformated_set + utc_offset.hours).strftime('%H:%M')
+
+    if local_sunrise.to_i > 12
+      local_sunrise = (unformated_rise + utc_offset.hours - 12.hours).strftime('%H:%M')
+    end
+
+    if local_sunset.to_i < 12
+      local_sunset = (unformated_set + utc_offset.hours + 12.hours).strftime('%H:%M')
+    end
 
     self.sunrise = local_sunrise
     self.sunset = local_sunset
   end
+
 
 
   # call the api to get the moon phase for the date of the observation and rise/set time for user location
