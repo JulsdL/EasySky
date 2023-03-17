@@ -6,7 +6,7 @@ export default class extends Controller {
   launchAnimation() {
     setTimeout(() => {
       this.pageTarget.innerHTML = "";
-      this.pageTarget.insertAdjacentHTML('beforeend', "<p>Nous calculons le planning idéal</p>")
+      this.pageTarget.insertAdjacentHTML('beforeend', "<p>Nous traitons vos informations</p>")
       this.pageTarget.classList.add("loader-container");
     }, 250);
   }
