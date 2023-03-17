@@ -27,7 +27,8 @@ class Booking < ApplicationRecord
     planning.name = "Plan d'observation du #{date.strftime("%d.%m.%y")}"
     # add 8 celestial bodies to the observation planning, wich are the 8 first celestial bodies corresponding
     # to the ones returned by the visible_objects method
-    planning.celestial_bodies = planning.visible_objects.first(8).map { |object| CelestialBody.find_by!(name: object["messier"]) }
+    planning.select_objects # call the select_objects method from the observation planning model
+    planning.celestial_bodies = JSON.parse(planning.visible_objects).first(8).map { |object| CelestialBody.find_by!(name: object["messier"]) }
     # call the moon method from the observation planning model to get the moon_phase image url
     planning.moon(date.strftime("%Y-%m-%d"))
     planning.save

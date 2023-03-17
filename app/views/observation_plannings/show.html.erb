@@ -40,15 +40,15 @@
           </div>
           <div class="d-flex flex-row  align-items-center">
             <%= image_tag "azimuth.png",  width:'20', height:'20'%>
-            <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth].round %>°</p>
+            <p><strong>Azimuth: </strong><%= @visible_objects.find {|f| f['messier'] == celestial_body.name}['azimuth'].round %>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-solid fa-arrow-up px-1"></i>
-            <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}[:altitude].round%>°</p>
+            <p><strong>Altitude:</strong> <%= @visible_objects.find {|f| f['messier'] == celestial_body.name}['altitude'].round%>°</p>
           </div>
           <div class="d-flex flex-row  align-items-center">
             <i class="fa-regular fa-compass px-1"></i>
-            <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}[:azimuth]) %></p>
+            <p><strong>Orientation:</strong> <%= CelestialBody.orientation(@visible_objects.find {|f| f['messier'] == celestial_body.name}['azimuth']) %></p>
           </div>
           <div class="description" data-observation-target="description">
             <p><%= celestial_body.description %></p>
