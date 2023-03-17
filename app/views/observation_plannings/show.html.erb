@@ -1,6 +1,7 @@
 <div class= "container-fluid" data-controller="observation pointage">
   <div class="titre m-3" >
     <h2 class="text-shadow" style="font-size: 2rem"> <%= "#{@observation_planning.name.upcase} POUR #{@observation_planning.user.first_name.upcase}" %></h2>
+    <h3 class="text-shadow" style="font-size: 1.5rem"><%= "À #{@observation_planning.location.upcase}" %></h3>
     <h3 class="text-shadow" style="font-size: 1.5rem"><%= "DE #{@observation_planning.start_time.strftime("%H:%M")} À #{@observation_planning.end_time.strftime("%H:%M")}" %></h3>
   </div>
   <div class="sunmoon col-12 d-flex flex-row justify-content-center  mb-3">
