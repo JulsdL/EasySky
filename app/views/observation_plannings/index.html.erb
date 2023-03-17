@@ -10,7 +10,7 @@
           <div class="card-paiement px-4">
             <p>
               <div class="row">
-                <strong><%= "#{observation_planning.name} pour #{observation_planning.user.first_name}" %></strong>
+                <strong><%= "#{observation_planning.name} pour #{observation_planning.user.first_name} à #{observation_planning.location}" %></strong>
               </div>
               <div class="row">
                 <p><%= "De #{observation_planning.start_time.strftime("%H:%M")} à #{observation_planning.end_time.strftime("%H:%M")}" %></p>
@@ -18,15 +18,15 @@
             </p>
             <%# Display the link to show the observation planning details %>
             <div class="row" style="padding: 0px">
-            <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "btn-straight px-2 ", style: "font-size:0.9rem; height: 40px" %>
-            <a href="#" class="btn-straight px-2 " style="font-size:0.9rem; height: 40px">Modifier</a>
-            <a href="#" class="btn-straight px-2 " style="font-size:0.9rem; height: 40px">Supprimer</a>
+              <%= link_to "Afficher le planning", observation_planning_path(observation_planning), class: "btn-straight px-2 ", style: "font-size:0.9rem; height: 40px" %>
+              <a href="#" class="btn-straight px-2 " style="font-size:0.9rem; height: 40px">Modifier</a>
+              <a href="#" class="btn-straight px-2 " style="font-size:0.9rem; height: 40px">Supprimer</a>
             </div>
           </div>
         <% end %>
-          <div class="row mt-4 mb-4">
-            <button class="btn-straight">Créer un nouveau planning</button>
-          </div>
+        <div class="row mt-4 mb-4">
+          <button class="btn-straight">Créer un nouveau planning</button>
+        </div>
       </div>
     </div>
   </div>
